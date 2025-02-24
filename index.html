@@ -91,21 +91,98 @@
             </div>
         </section>
 
-        <section id="vision-mision" class="py-24 px-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');">
-            <div class="container mx-auto">
+        <section id="vision-mision" class="py-24 px-6 relative overflow-hidden bg-black">
+            <div id="sparkContainer" class="absolute inset-0"></div>
+            <div class="container mx-auto relative z-10">
                 <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center text-white">Nuestra misión y visión</h2>
                 
                 <div class="flex flex-col md:flex-row justify-center gap-8">
-                    <div class="w-full md:w-1/2 bg-gray-100 p-8 rounded-lg">
+                    <div class="w-full md:w-1/2 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
                         <h3 class="text-2xl font-semibold mb-4 text-gray-800">01. Visión</h3>
                         <p class="text-gray-600">Ser la compañía más valorada del mercado del cual participamos, por desarrollar y brindar las mejores soluciones de conducción eléctrica.</p>
                     </div>
-                    <div class="w-full md:w-1/2 bg-gray-100 p-8 rounded-lg">
+                    <div class="w-full md:w-1/2 bg-white bg-opacity-90 p-8 rounded-lg shadow-lg">
                         <h3 class="text-2xl font-semibold mb-4 text-gray-800">02. Misión</h3>
                         <p class="text-gray-600">Resolver las necesidades de conducción de energía eléctrica, sea cual fuere el desafío planteado. Simplificar situaciones complejas de nuestros clientes.</p>
                     </div>
                 </div>
             </div>
+        
+            <style>
+                .spark {
+                    position: absolute;
+                    background: radial-gradient(circle, #ff3300 0%, rgba(255, 51, 0, 0) 70%);
+                    border-radius: 50%;
+                    opacity: 0;
+                }
+        
+                @keyframes spark {
+                    0% {
+                        opacity: 0;
+                        transform: scale(0) translateY(0);
+                    }
+                    50% {
+                        opacity: 1;
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(1) translateY(-100px);
+                    }
+                }
+            </style>
+        
+            <script>
+                function createSpark() {
+                    const spark = document.createElement('div');
+                    spark.classList.add('spark');
+                    const size = Math.random() * 50 + 20; // Tamaño entre 20px y 70px
+                    spark.style.width = `${size}px`;
+                    spark.style.height = `${size}px`;
+                    spark.style.left = `${Math.random() * 100}%`;
+                    spark.style.bottom = '-50px';
+                    spark.style.animation = `spark ${Math.random() * 3 + 2}s ease-out`;
+                    
+                    document.getElementById('sparkContainer').appendChild(spark);
+                    
+                    spark.addEventListener('animationend', () => {
+                        spark.remove();
+                    });
+                }
+        
+                function createElectricField() {
+                    const field = document.createElement('div');
+                    field.classList.add('electric-field');
+                    field.style.position = 'absolute';
+                    field.style.top = `${Math.random() * 100}%`;
+                    field.style.left = `${Math.random() * 100}%`;
+                    field.style.width = '150px';
+                    field.style.height = '2px';
+                    field.style.background = 'linear-gradient(90deg, transparent, #ff3300, transparent)';
+                    field.style.opacity = '0.7';
+                    field.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    field.style.animation = 'flicker 0.5s infinite alternate';
+                    
+                    document.getElementById('sparkContainer').appendChild(field);
+                    
+                    setTimeout(() => {
+                        field.remove();
+                    }, 1000);
+                }
+        
+                setInterval(createSpark, 100);
+                setInterval(createElectricField, 200);
+            </script>
+        
+            <style>
+                @keyframes flicker {
+                    0% {
+                        opacity: 0.5;
+                    }
+                    100% {
+                        opacity: 0.8;
+                    }
+                }
+            </style>
         </section>
         
         
