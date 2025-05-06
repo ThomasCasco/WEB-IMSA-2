@@ -23,6 +23,330 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .industry-card {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .industry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        .industry-card:hover .industry-overlay {
+            opacity: 0.9;
+        }
+        .industry-card:hover .industry-details {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .industry-details {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .tab-button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #e31837;
+        }
+        .tab-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .tab-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .video-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+        .play-button {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #e31837;
+            color: white;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: #c01530;
+        }
+        .innovation-card {
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .innovation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .py-12 {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        
+        .bg-black {
+            background-color: #000;
+            color: #fff;
+        }
+        
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+        
+        .font-bold {
+            font-weight: 700;
+        }
+        
+        .mb-16 {
+            margin-bottom: 4rem;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .grid {
+            display: grid;
+        }
+        
+        .gap-12 {
+            gap: 3rem;
+        }
+        
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            height: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: white;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-content {
+            transform: translateY(-10px);
+        }
+        
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-description {
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+        
+        .product-link {
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+        
+        .product-link:hover {
+            color: #c01530;
+        }
+        
+        .product-link svg {
+            margin-left: 0.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-link:hover svg {
+            transform: translateX(5px);
+        }
+        
+        /* Responsive Grid */
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e31837',
+                        secondary: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s infinite;
+        }
+        
+        .hero-line {
+            position: relative;
+        }
+        
+        .hero-line::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #e31837;
+            border-radius: 2px;
+        }
+        
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e31837' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .connection-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .connection-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(227, 24, 55, 0.3), transparent);
+            animation-name: moveLine;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes moveLine {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
 </head>
 <body class="bg-black text-white font-sans">
     <header class="fixed w-full z-10 bg-black bg-opacity-90 backdrop-blur-md">
@@ -39,7 +363,7 @@
                     <a href="portal-cliente.html" class="text-sm font-medium hover:text-primary transition duration-300">Portal Cliente</a>
                     <a href="contacto.html" class="text-sm font-medium hover:text-primary transition duration-300">Contacto</a>
                 </div>
-                <button class="md:hidden text-white">
+                <button class="md:hidden text-white" id="mobile-menu-button">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
@@ -49,72 +373,608 @@
     </header>
 
     <main class="pt-20">
-        <section class="bg-gradient-to-r from-secondary to-black py-24 px-6">
-            <div class="container mx-auto">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Innovación en cada conexión</h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl">Descubre nuestra gama de productos de vanguardia, diseñados para impulsar el futuro de la industria eléctrica y energética.</p>
+        <section class="relative bg-gradient-to-r from-secondary to-black py-24 px-6 overflow-hidden hero-pattern">
+            <!-- Líneas de conexión animadas -->
+            <div class="connection-lines">
+                <div class="connection-line" style="width: 100%; left: 0%; animation-duration: 15s; top: 15%;"></div>
+                <div class="connection-line" style="width: 80%; left: 10%; animation-duration: 12s; top: 35%;"></div>
+                <div class="connection-line" style="width: 60%; left: 20%; animation-duration: 18s; top: 65%;"></div>
+                <div class="connection-line" style="width: 90%; left: 5%; animation-duration: 20s; top: 85%;"></div>
+            </div>
+            
+            <!-- Círculos decorativos -->
+            <div class="absolute top-1/4 right-1/4 w-64 h-64 bg-primary bg-opacity-5 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-48 h-48 bg-primary bg-opacity-5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+            
+            <div class="container mx-auto relative z-10">
+                <div class="max-w-3xl">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-8 leading-tight hero-line animate-fadeInUp">
+                        Innovación en cada conexión
+                    </h1>
+                    
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mb-10 animate-fadeInUp" style="animation-delay: 0.2s;">
+                        Descubre nuestra gama de productos de vanguardia, diseñados para impulsar el futuro de la industria eléctrica y energética.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp" style="animation-delay: 0.4s;">
+                        <a href="#productos" class="bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-flex items-center justify-center">
+                            Explorar productos
+                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </a>
+                        <a href="#contacto" class="border border-gray-600 hover:border-primary text-white font-bold py-3 px-6 rounded-md transition duration-300 inline-flex items-center justify-center">
+                            Contactar con ventas
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Elemento visual a la derecha -->
+                <div class="hidden lg:block absolute right-0 top-1/2 transform -translate-y-1/2 w-2/5 h-4/5 z-0">
+                    <div class="relative w-full h-full">
+                        <!-- Imagen con efecto de superposición -->
+                        <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
+                        <img src="/placeholder.svg?height=600&width=600&query=electrical%20cable%20connections%20industrial" 
+                             alt="Conexiones eléctricas industriales" 
+                             class="w-full h-full object-cover opacity-40">
+                        
+                        <!-- Elementos decorativos -->
+                        <div class="absolute top-1/4 left-1/4 w-16 h-16 border-2 border-primary rounded-full"></div>
+                        <div class="absolute bottom-1/3 right-1/3 w-24 h-24 border border-primary rounded-full"></div>
+                        <div class="absolute top-1/2 right-1/4 w-8 h-8 bg-primary rounded-full opacity-30"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Indicador de scroll -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-fadeInUp" style="animation-delay: 0.8s;">
+                <span class="text-sm text-gray-400 mb-2">Descubre más</span>
+                <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+                    <div class="w-1.5 h-3 bg-primary rounded-full mt-2 animate-bounce"></div>
+                </div>
             </div>
         </section>
+        
+        <script>
+            // Crear líneas de conexión adicionales dinámicamente
+            document.addEventListener('DOMContentLoaded', function() {
+                const linesContainer = document.querySelector('.connection-lines');
+                const lineCount = 6;
+                
+                for (let i = 0; i < lineCount; i++) {
+                    const line = document.createElement('div');
+                    line.classList.add('connection-line');
+                    
+                    // Posición y tamaño aleatorios
+                    const width = Math.random() * 70 + 30;
+                    const left = Math.random() * (100 - width);
+                    const top = Math.random() * 100;
+                    const duration = Math.random() * 10 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    line.style.width = `${width}%`;
+                    line.style.left = `${left}%`;
+                    line.style.top = `${top}%`;
+                    line.style.animationDuration = `${duration}s`;
+                    line.style.animationDelay = `${delay}s`;
+                    
+                    linesContainer.appendChild(line);
+                }
+            });
+        </script>
 
-        <section class="py-24 px-6">
+        <!-- Innovación en cada conexión - NUEVA SECCIÓN -->
+        <section class="py-24 px-6 bg-black">
             <div class="container mx-auto">
-                <h2 class="text-3xl font-bold mb-16 text-center">Nuestras Líneas de Producto</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    <div class="group">
-                        <div class="aspect-w-16 aspect-h-9 mb-6 overflow-hidden rounded-lg">
-                            <img src="./img/Portada_Cables_v2_37x50.png" alt="Cable Eléctrico" class="object-cover w-full h-full transform group-hover:scale-105 transition duration-500">
+                <div class="text-center mb-16 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">Innovación en cada conexión</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Descubre cómo nuestras soluciones de vanguardia están transformando la industria eléctrica y energética con
+                        tecnología de punta.
+                    </p>
+                </div>
+
+                <!-- Tabs Navigation -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in" style="animation-delay: 0.2s;">
+                    <button class="tab-button active px-6 py-3 rounded-full text-white" data-tab="tab1">
+                        Eficiencia Energética
+                    </button>
+                    <button class="tab-button px-6 py-3 rounded-full text-gray-400 hover:text-white" data-tab="tab2">
+                        Seguridad Avanzada
+                    </button>
+                    <button class="tab-button px-6 py-3 rounded-full text-gray-400 hover:text-white" data-tab="tab3">
+                        Tecnología Inteligente
+                    </button>
+                    <button class="tab-button px-6 py-3 rounded-full text-gray-400 hover:text-white" data-tab="tab4">
+                        Rendimiento Superior
+                    </button>
+                </div>
+
+                <!-- Content Area -->
+                <div class="max-w-5xl mx-auto fade-in" style="animation-delay: 0.4s;">
+                    <!-- Tab 1 Content -->
+                    <div id="tab1" class="tab-content active">
+                        <div class="bg-secondary/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-gray-800">
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Eficiencia Energética</h3>
+                                    <p class="text-gray-300 text-lg mb-6">
+                                        Nuestros productos están diseñados para maximizar la eficiencia energética, reduciendo pérdidas y optimizando el rendimiento en cada conexión.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Aplicaciones</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Infraestructura crítica</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Sistemas de alta potencia</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Entornos industriales</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Beneficios</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Reducción de costos operativos</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Mayor vida útil del producto</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Compatibilidad con sistemas existentes</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="mt-8 flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors">
+                                        <span>Explorar soluciones</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-semibold mb-3">Cables Eléctricos</h3>
-                        <p class="text-gray-400 mb-4">Soluciones de alta conductividad y durabilidad para instalaciones eléctricas de última generación.</p>
-                        <a href="#" class="text-primary font-medium hover:underline">Explorar productos →</a>
                     </div>
-                    <div class="group">
-                        <div class="aspect-w-16 aspect-h-9 mb-6 overflow-hidden rounded-lg">
-                            <img src="./img/Portada_Conductores_37x50.png" alt="Alambre Esmaltado" class="object-cover w-full h-full transform group-hover:scale-105 transition duration-500">
+
+                    <!-- Tab 2 Content -->
+                    <div id="tab2" class="tab-content">
+                        <div class="bg-secondary/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-gray-800">
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.618 5.984A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016zM12 9v2m0 4h.01"></path>
+                                    </svg>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Seguridad Avanzada</h3>
+                                    <p class="text-gray-300 text-lg mb-6">
+                                        Implementamos los más altos estándares de seguridad en cada producto, garantizando protección contra sobrecalentamiento y cortocircuitos.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Aplicaciones</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Entornos de alta seguridad</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Instalaciones críticas</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Sistemas de emergencia</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Beneficios</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Prevención de accidentes</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Cumplimiento normativo</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Protección de equipos sensibles</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="mt-8 flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors">
+                                        <span>Explorar soluciones</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-semibold mb-3">Alambres Esmaltados</h3>
-                        <p class="text-gray-400 mb-4">Precisión y eficiencia en cada filamento, diseñados para optimizar el rendimiento en aplicaciones especializadas.</p>
-                        <a href="#" class="text-primary font-medium hover:underline">Explorar productos →</a>
                     </div>
-                    <div class="group">
-                        <div class="aspect-w-16 aspect-h-9 mb-6 overflow-hidden rounded-lg">
-                            <img src="./img/Portadas_ImalumHE_v2.png" alt="Cable Especial" class="object-cover w-full h-full transform group-hover:scale-105 transition duration-500">
+
+                    <!-- Tab 3 Content -->
+                    <div id="tab3" class="tab-content">
+                        <div class="bg-secondary/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-gray-800">
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                                    </svg>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Tecnología Inteligente</h3>
+                                    <p class="text-gray-300 text-lg mb-6">
+                                        Integramos componentes inteligentes que permiten monitoreo en tiempo real y diagnóstico predictivo para anticipar necesidades de mantenimiento.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Aplicaciones</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Redes inteligentes</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Automatización industrial</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Edificios inteligentes</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Beneficios</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Mantenimiento predictivo</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Optimización de recursos</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Integración con IoT</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="mt-8 flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors">
+                                        <span>Explorar soluciones</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-semibold mb-3">Cables Especiales</h3>
-                        <p class="text-gray-400 mb-4">Ingeniería avanzada para entornos exigentes, garantizando rendimiento y seguridad sin compromisos.</p>
-                        <a href="#" class="text-primary font-medium hover:underline">Explorar productos →</a>
+                    </div>
+
+                    <!-- Tab 4 Content -->
+                    <div id="tab4" class="tab-content">
+                        <div class="bg-secondary/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-xl border border-gray-800">
+                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center shrink-0">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m-2 0h-4"></path>
+                                    </svg>
+                                </div>
+
+                                <div>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-4">Rendimiento Superior</h3>
+                                    <p class="text-gray-300 text-lg mb-6">
+                                        Cada producto está diseñado para ofrecer un rendimiento excepcional incluso en las condiciones más exigentes y entornos adversos.
+                                    </p>
+
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Aplicaciones</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Entornos extremos</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Aplicaciones de alta demanda</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Operación continua</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="bg-black/30 rounded-xl p-6">
+                                            <h4 class="font-semibold mb-2">Beneficios</h4>
+                                            <ul class="space-y-2 text-gray-300">
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Durabilidad extendida</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Resistencia a condiciones adversas</span>
+                                                </li>
+                                                <li class="flex items-center gap-2">
+                                                    <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                                    </svg>
+                                                    <span>Fiabilidad garantizada</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <button class="mt-8 flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors">
+                                        <span>Explorar soluciones</span>
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="bg-secondary py-24 px-6">
+        <section class="py-12 px-6 bg-black">
+            <div class="container">
+                <h2 class="text-3xl font-bold mb-16 text-center">Nuestras Líneas de Producto</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Producto 1: Cables Eléctricos -->
+                    <div class="product-card">
+                        <img src="img/Portada_Cables_v2_37x50.png" alt="Cable Eléctrico" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">Cables Eléctricos</h3>
+                            <p class="product-description">Soluciones de alta conductividad y durabilidad para instalaciones eléctricas de última generación.</p>
+                            <a href="#" class="product-link">
+                                Explorar productos
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Producto 2: Alambres Esmaltados -->
+                    <div class="product-card">
+                        <img src="img/Portada_Conductores_37x50.png" alt="Alambre Esmaltado" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">Alambres Esmaltados</h3>
+                            <p class="product-description">Precisión y eficiencia en cada filamento, diseñados para optimizar el rendimiento en aplicaciones especializadas.</p>
+                            <a href="#" class="product-link">
+                                Explorar productos
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Producto 3: Cables Especiales -->
+                    <div class="product-card">
+                        <img src="img/Portadas_ImalumHE_v2.png" alt="Cable Especial" class="product-image">
+                        <div class="product-content">
+                            <h3 class="product-title">Cables Especiales</h3>
+                            <p class="product-description">Ingeniería avanzada para entornos exigentes, garantizando rendimiento y seguridad sin compromisos.</p>
+                            <a href="#" class="product-link">
+                                Explorar productos
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industrias que Impulsamos - NUEVA SECCIÓN CON VIDEO -->
+        <section class="py-24 px-6 bg-gradient-to-b from-black to-secondary">
             <div class="container mx-auto">
-                <h2 class="text-3xl font-bold mb-16 text-center">Industrias que Impulsamos</h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        <span class="font-medium">Energía y Utilities</span>
+                <h2 class="text-3xl font-bold mb-16 text-center fade-in">Industrias que Impulsamos</h2>
+                
+                <div class="flex flex-col lg:flex-row gap-12 items-center">
+                    <!-- Video Section -->
+                    <div class="w-full lg:w-1/2 fade-in" style="animation-delay: 0.2s;">
+                        <div class="video-container">
+                            <video id="industries-video" class="w-full aspect-video object-cover" loop muted>
+                                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            
+                            <div class="video-overlay">
+                                <h3 class="text-2xl md:text-3xl font-bold mb-4">Soluciones para cada sector</h3>
+                                <p class="text-white/80 mb-6 max-w-lg">
+                                    Nuestras tecnologías impulsan el desarrollo y la innovación en los sectores más exigentes de la economía global.
+                                </p>
+                                
+                                <div class="play-button" id="play-button">
+                                    <svg id="play-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                    <svg id="pause-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                        <span class="font-medium">Construcción</span>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
-                        <span class="font-medium">Automotriz</span>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        <span class="font-medium">Telecomunicaciones</span>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <span class="font-medium">Minería</span>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-6 rounded-lg text-center hover:bg-opacity-70 transition duration-300">
-                        <svg class="w-12 h-12 mx-auto mb-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        <span class="font-medium">Petróleo y Gas</span>
+                    
+                    <!-- Industries Grid -->
+                    <div class="w-full lg:w-1/2 fade-in" style="animation-delay: 0.4s;">
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <a href="/industrias/energia" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Energía y Utilities" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Energía y Utilities</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="/industrias/construccion" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Construcción" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Construcción</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="/industrias/automotriz" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1537041373723-5e6a77e3d969?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Automotriz" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Automotriz</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="/industrias/telecomunicaciones" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Telecomunicaciones" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Telecomunicaciones</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="/industrias/mineria" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1579551053957-ee77f9b970c7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Minería" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Minería</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                            
+                            <a href="/industrias/petroleo-gas" class="industry-card relative rounded-xl overflow-hidden aspect-square">
+                                <img src="https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Petróleo y Gas" class="w-full h-full object-cover">
+                                <div class="industry-overlay absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-60"></div>
+                                <div class="absolute inset-0 p-4 flex flex-col justify-end">
+                                    <h3 class="text-white font-medium text-sm md:text-base">Petróleo y Gas</h3>
+                                    <div class="industry-details flex items-center mt-2">
+                                        <span class="text-primary text-xs">Ver más</span>
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -129,40 +989,184 @@
         </section>
     </main>
 
-    <footer class="bg-secondary py-16 px-6">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Contacto</h3>
-                <p class="mb-2">Email: info@imsa.com</p>
-                <p>Teléfono: +XX XXX XXX XXX</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Enlaces Rápidos</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-primary transition duration-300">Sobre Nosotros</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Carreras</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Soporte Técnico</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Política de Privacidad</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Síguenos</h3>
+    <footer class="text-white bg-black">
+        <!-- Sección Principal -->
+        <div class="container mx-auto px-6 py-10 bg-black">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10"
+                style="animation: fadeIn 0.8s ease-out forwards;">
+                <!-- Logo -->
+                <div class="mb-6 md:mb-0">
+                    <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo" class="h-10">
+                </div>
+
+                <!-- Redes Sociales -->
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                        </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.344 3.608 1.32.975.975 1.257 2.242 1.32 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.344 2.633-1.32 3.608-.975.975-2.242 1.257-3.608 1.32-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.344-3.608-1.32-.975-.975-1.257-2.242-1.32-3.608-.058-1.266-.07-1.645-.07-4.85s.012-3.584.07-4.85c.062-1.366.344-2.633 1.32-3.608.975-.975 2.242-1.257 3.608-1.32 1.266-.058 1.645-.07 4.85-.07zm0-2.163C8.756 0 8.331.015 7.052.07c-1.529.065-2.888.362-3.995 1.47C2.95 2.949 2.653 4.308 2.588 5.837.015 7.052 0 7.333 0 12c0 4.667.015 4.948.07 6.168.065 1.529.362 2.888 1.47 3.995 1.107 1.107 2.466 1.404 3.995 1.47C8.331 23.985 8.756 24 12 24c4.667 0 4.948-.015 6.168-.07 1.529-.065 2.888-.362 3.995-1.47 1.107-1.107 1.404-2.466 1.47-3.995.055-1.22.07-1.501.07-6.168 0-4.667-.015-4.948-.07-6.168-.065-1.529-.362-2.888-1.47-3.995C21.056.432 19.697.135 18.168.07 16.948.015 16.667 0 12 0zm0 5.838c-3.403 0-6.162 2.76-6.162 6.163S8.597 18.164 12 18.164s6.162-2.76 6.162-6.163S15.403 5.838 12 5.838zm0 10.326c-2.296 0-4.163-1.868-4.163-4.163S9.704 7.837 12 7.837s4.163 1.868 4.163 4.163-1.868 4.163-4.163 4.163zm6.406-11.845a1.44 1.44 0 01-1.44-1.44c0-.794.646-1.44 1.44-1.44.795 0 1.44.646 1.44 1.44 0 .795-.645 1.44-1.44 1.44z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
                     </a>
                 </div>
             </div>
+
+            <!-- Menú Principal -->
+            <div class="flex flex-wrap justify-center md:justify-between gap-8 mb-10 text-center md:text-left"
+                style="animation: fadeIn 0.8s ease-out 0.2s forwards; opacity: 0;">
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">COMPAÑÍA</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">MERCADOS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">CENTRO
+                    DE PRODUCTOS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">PERSONAS
+                    Y CARRERAS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">INSIGHT</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">POLÍTICA
+                    DE GESTIÓN</a>
+            </div>
         </div>
-        <div class="container mx-auto mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2024 IMSA. Todos los derechos reservados.
+
+        <!-- Barra inferior -->
+        <div class="footer-bottom py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+                    <p class="text-gray-400">© 2024 IMSA. Todos los derechos reservados</p>
+                    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                        <a href="#" class="footer-link text-gray-400">Mapa Web</a>
+                        <a href="#" class="footer-link text-gray-400">Información Legal</a>
+                        <a href="#" class="footer-link text-gray-400">Política de Privacidad</a>
+                        <a href="#" class="footer-link text-gray-400">Política de Cookies</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Tab functionality for Innovation section
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // Video play/pause functionality
+            const video = document.getElementById('industries-video');
+            const playButton = document.getElementById('play-button');
+            const playIcon = document.getElementById('play-icon');
+            const pauseIcon = document.getElementById('pause-icon');
+            
+            playButton.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                } else {
+                    video.pause();
+                    pauseIcon.classList.add('hidden');
+                    playIcon.classList.remove('hidden');
+                }
+            });
+            
+            // Try to autoplay video (may be blocked by browser policies)
+            try {
+                video.play().then(() => {
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+                }).catch(error => {
+                    // Autoplay was prevented
+                    console.log("Autoplay prevented:", error);
+                });
+            } catch (error) {
+                console.log("Video autoplay error:", error);
+            }
+            
+            // Animación de contadores
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+
+            // Animación de fade-in al hacer scroll
+            const fadeElems = document.querySelectorAll('.fade-in');
+
+            const fadeIn = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const fadeObserver = new IntersectionObserver(fadeIn, {
+                root: null,
+                threshold: 0.1
+            });
+
+            fadeElems.forEach(elem => {
+                elem.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
+                fadeObserver.observe(elem);
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            if (mobileMenuButton) {
+                const mobileMenu = document.querySelector('.md\\:flex');
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
