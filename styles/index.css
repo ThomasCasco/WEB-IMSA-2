@@ -1,0 +1,536 @@
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .section-fade {
+            position: relative;
+        }
+
+        .section-fade::before,
+        .section-fade::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .section-fade::before {
+            top: 0;
+            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%);
+        }
+
+        .section-fade::after {
+            bottom: 0;
+            background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card-animate:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+
+        .section-fade {
+            position: relative;
+        }
+
+        .section-fade::before,
+        .section-fade::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .section-fade::before {
+            top: 0;
+            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%);
+        }
+
+        .section-fade::after {
+            bottom: 0;
+            background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card-animate:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .vision-mission-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .vision-mission-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .vision-mission-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #e0d1d100, #754b5476, #a539549d, #a92c2cba);
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .vision-mission-card:hover::before {
+            opacity: 1;
+        }
+
+        .vision-mission-card h3 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .vision-mission-card h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: #e31837;
+            transition: width 0.3s ease;
+        }
+
+        .vision-mission-card:hover h3::after {
+            width: 100%;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            background-color: #000;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.95));
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9) 50%, rgba(0, 0, 0, 0.98));
+        }
+
+        .project-card img {
+            transition: transform 0.8s ease;
+            opacity: 0.7;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+            opacity: 0.5;
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem;
+            z-index: 2;
+        }
+
+        .red-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e31837;
+            transform: scaleX(0.2);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .red-line {
+            transform: scaleX(0.4);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover::before {
+            background: linear-gradient(to bottom, rgba(227, 24, 55, 0.4), rgba(227, 24, 55, 0.8));
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+            transform: translateY(20px);
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-content {
+            transform: translateY(0);
+        }
+
+        .project-description {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .project-card:hover .project-description {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        .red-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e31837;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .red-line {
+            transform: scaleX(1);
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .diversity-card {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .diversity-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8));
+            z-index: 1;
+            transition: all 0.5s ease;
+        }
+
+        .diversity-card:hover::before {
+            background: linear-gradient(to bottom, rgba(227, 24, 55, 0.4), rgba(0, 0, 0, 0.9));
+        }
+
+        .diversity-card img {
+            transition: transform 0.8s ease;
+        }
+
+        .diversity-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .diversity-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 2;
+            transition: all 0.5s ease;
+        }
+
+        .diversity-card:hover .diversity-content {
+            transform: translateY(-20px);
+        }
+
+        .diversity-title {
+            transition: all 0.5s ease;
+        }
+
+        .diversity-card:hover .diversity-title {
+            transform: translateY(-10px);
+        }
+
+        .diversity-description {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+            overflow: hidden;
+        }
+
+        .diversity-card:hover .diversity-description {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        .red-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e31837;
+            transform: scaleX(0.2);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .diversity-card:hover .red-line {
+            transform: scaleX(1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-gradient {
+            background: linear-gradient(to right, #1c2536, #1f2937);
+        }
+
+        .social-icon {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(45deg, #e31837, #ff4d4d);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover::before {
+            opacity: 1;
+        }
+
+        .footer-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background: #e31837;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .footer-gradient {
+            background: linear-gradient(to right, #1c2536, #1f2937);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icon:hover {
+            background-color: rgba(227, 24, 55, 0.1);
+            border-color: #e31837;
+        }
+
+        .footer-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #e31837;
+        }
+
+        .footer-bottom {
+            background: linear-gradient(to right, rgba(227, 24, 55, 0.1), rgba(0, 0, 0, 0.1), rgba(0, 200, 255, 0.1));
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
