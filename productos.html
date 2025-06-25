@@ -743,29 +743,34 @@
     <!-- Content Wrapper -->
     <div class="content-wrapper">
         <!-- Header -->
-        <header class="fixed w-full z-50 header">
-            <div class="container">
-                <nav class="flex justify-between items-center py-4">
+        <header class="fixed w-full z-10 bg-black bg-opacity-90 backdrop-blur-md">
+            <nav class="container mx-auto px-6 py-4">
+                <div class="flex justify-between items-center">
                     <div class="logo">
-                        <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo" class="h-8">
+                        <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo"
+                            class="h-8 transition-transform duration-300 hover:scale-110">
                     </div>
-                    
-                    <div class="hidden md:flex space-x-8">
-                        <a href="index.html" class="text-sm font-medium text-white hover:text-primary transition duration-300">Inicio</a>
-                        <a href="productos.html" class="text-sm font-medium text-primary">Productos</a>
-                        <a href="servicios.html" class="text-sm font-medium text-white hover:text-primary transition duration-300">Servicios</a>
-                        <a href="nosotros.html" class="text-sm font-medium text-white hover:text-primary transition duration-300">nosotros</a>
-                        <a href="portal-cliente.html" class="text-sm font-medium text-white hover:text-primary transition duration-300">Portal Cliente</a>
-                        <a href="contacto.html" class="text-sm font-medium text-white hover:text-primary transition duration-300">Contacto</a>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="index.html"
+                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Inicio</a>
+                        <a href="productos.html"
+                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Productos</a>
+                        <a href="servicios.html"
+                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Servicios</a>
+                        <a href="nosotros.html"
+                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Nosotros</a>
+                        <a href="contacto.html"
+                            class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition duration-300">Contacto</a>
                     </div>
-                    
-                    <button class="md:hidden text-white" id="mobile-menu-button">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <button class="md:hidden text-white">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
-                </nav>
-            </div>
+                </div>
+            </nav>
         </header>
 
         <main class="pt-20">
@@ -798,7 +803,7 @@
                         <div class="lg:w-1/2 relative animate-fadeInUp animate-delay-300">
                             <div class="relative rounded-xl overflow-hidden shadow-2xl">
                                 <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent z-10"></div>
-                                <img src="./img/Portada_Conductores_37x50.png" 
+                                <img src="./img/10017-IMS Innovacion 2a.png" 
                                      alt="Equipamiento eléctrico industrial" 
                                      class="w-full object-cover h-96 md:h-[500px]">
                                 
