@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMSA - nosotros: Novedades y Eventos</title>
-    
+    <title>IMSA - Nosotros</title>
+    <link rel="stylesheet" href="./styles/index.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -13,17 +13,311 @@
                     colors: {
                         primary: '#e31837',
                         secondary: '#1a1a1a',
+                        accent: '#f8f9fa',
+                        dark: '#0d1117',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
                     },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+                        'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                        'slide-up': 'slideUp 0.8s ease-out forwards',
+                    }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .elegant-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border: 1px solid rgba(227, 24, 55, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .elegant-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e31837, #ff4757, #e31837);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .elegant-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .elegant-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(227, 24, 55, 0.15);
+        }
+        
+        .brand-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .brand-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(227, 24, 55, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .brand-card:hover::after {
+            left: 100%;
+        }
+        
+        .brand-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(227, 24, 55, 0.1);
+            border-color: #e31837;
+        }
+        
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #e31837, #ff4757);
+            border-radius: 2px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #0d1117 0%, #1a1a1a 50%, #0d1117 100%);
+            position: relative;
+        }
+        
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(227, 24, 55, 0.1) 0%, transparent 50%);
+        }
+        
+        .stats-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e31837, #ff4757);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: #e31837;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.2);
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 1.5rem;
+            width: 2px;
+            height: calc(100% - 0.5rem);
+            background: linear-gradient(to bottom, #e31837, rgba(227, 24, 55, 0.2));
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e31837, #ff4757);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 25px rgba(227, 24, 55, 0.3);
+        }
+        
+        .elegant-btn {
+            background: linear-gradient(135deg, #e31837, #ff4757);
+            color: white;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(227, 24, 55, 0.3);
+        }
+        
+        .elegant-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(227, 24, 55, 0.4);
+        }
+        
+        .elegant-btn-outline {
+            border: 2px solid #e31837;
+            color: #e31837;
+            background: transparent;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .elegant-btn-outline:hover {
+            background: #e31837;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .section-bg {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+        
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .counter {
+            transition: all 0.3s ease;
+        }
+        
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .brand-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e31837, #ff4757);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+    </style>
 </head>
-<body class="bg-black text-white font-sans">
+<body class="bg-white text-gray-900 font-montserrat">
+    <!-- Header original mantenido -->
     <header class="fixed w-full z-10 bg-black bg-opacity-90 backdrop-blur-md">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
@@ -55,129 +349,573 @@
     </header>
 
     <main class="pt-20">
-        <section class="bg-gradient-to-r from-secondary to-black py-24 px-6">
-            <div class="container mx-auto">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">nosotros IMSA</h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl">Mantente al día con las últimas novedades y eventos en la industria eléctrica y energética.</p>
-            </div>
-        </section>
-
-        <section class="py-24 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold mb-16 text-center">Novedades</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                    <article class="bg-secondary rounded-lg overflow-hidden shadow-lg">
-                        <img src="./img/expo1.jpg" alt="Innovación en Cables" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Innovación en Cables de Alta Tensión</h3>
-                            <p class="text-gray-400 mb-4">IMSA presenta su nueva línea de cables superconductores para aplicaciones de alta tensión...</p>
-                            <a href="#" class="text-primary font-medium hover:underline">Leer más →</a>
-                        </div>
-                    </article>
-                    <article class="bg-secondary rounded-lg overflow-hidden shadow-lg">
-                        <img src="./img/2.jpg" alt="Sostenibilidad" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Compromiso con la Sostenibilidad</h3>
-                            <p class="text-gray-400 mb-4">Descubre cómo IMSA está liderando el camino hacia una producción más sostenible en la industria...</p>
-                            <a href="#" class="text-primary font-medium hover:underline">Leer más →</a>
-                        </div>
-                    </article>
-                    <article class="bg-secondary rounded-lg overflow-hidden shadow-lg">
-                        <img src="./img/5.jpg" alt="Expansión Global" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-xl font-semibold mb-2">Expansión Global de IMSA</h3>
-                            <p class="text-gray-400 mb-4">IMSA anuncia la apertura de nuevas instalaciones en Asia, fortaleciendo su presencia internacional...</p>
-                            <a href="#" class="text-primary font-medium hover:underline">Leer más →</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-secondary py-24 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold mb-16 text-center">Próximos Eventos</h2>
-                <div class="space-y-8">
-                    <div class="bg-black bg-opacity-50 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between">
-                        <div class="mb-4 md:mb-0 md:mr-6">
-                            <h3 class="text-xl font-semibold mb-2">Feria Internacional de Energía</h3>
-                            <p class="text-gray-400">Únete a nosotros en el stand 42 para descubrir las últimas innovaciones en tecnología eléctrica.</p>
-                        </div>
-                        <div class="flex flex-col items-center md:items-end">
-                            <span class="text-primary font-bold text-lg mb-2">15-17 Septiembre, 2024</span>
-                            <a href="#" class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Más Información</a>
-                        </div>
-                    </div>
-                    <div class="bg-black bg-opacity-50 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between">
-                        <div class="mb-4 md:mb-0 md:mr-6">
-                            <h3 class="text-xl font-semibold mb-2">Webinar: Futuro de la Energía Renovable</h3>
-                            <p class="text-gray-400">Participa en nuestro webinar gratuito sobre las tendencias emergentes en energía renovable y smart grids.</p>
-                        </div>
-                        <div class="flex flex-col items-center md:items-end">
-                            <span class="text-primary font-bold text-lg mb-2">5 Octubre, 2024</span>
-                            <a href="#" class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Registrarse</a>
-                        </div>
-                    </div>
-                    <div class="bg-black bg-opacity-50 rounded-lg p-6 flex flex-col md:flex-row items-center justify-between">
-                        <div class="mb-4 md:mb-0 md:mr-6">
-                            <h3 class="text-xl font-semibold mb-2">Conferencia Anual IMSA</h3>
-                            <p class="text-gray-400">No te pierdas nuestra conferencia anual donde presentaremos nuestra visión para el próximo año.</p>
-                        </div>
-                        <div class="flex flex-col items-center md:items-end">
-                            <span class="text-primary font-bold text-lg mb-2">12 Diciembre, 2024</span>
-                            <a href="#" class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">Reservar Plaza</a>
-                        </div>
+        <!-- Hero Section -->
+        <section class="hero-gradient py-24 px-6 text-white relative overflow-hidden">
+            <div class="container mx-auto text-center relative z-10">
+                <div class="reveal">
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 text-shadow">Nosotros</h1>
+                    <div class="section-divider"></div>
+                    <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed">
+                        Más de <span class="text-primary font-bold">75 años</span> liderando la industria eléctrica argentina con innovación, calidad y compromiso con la excelencia.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="#historia" class="elegant-btn">
+                            Conoce Nuestra Historia
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                            </svg>
+                        </a>
+                        <a href="#marcas" class="elegant-btn-outline">
+                            Ver Nuestras Marcas
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-24 px-6 text-center">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-3xl font-bold mb-8">Mantente Informado</h2>
-                <p class="text-xl mb-12 text-gray-300">Suscríbete a nuestro boletín para recibir las últimas noticias y actualizaciones de IMSA directamente en tu bandeja de entrada.</p>
-                <form class="flex flex-col md:flex-row gap-4 justify-center">
-                    <input type="email" placeholder="Tu correo electrónico" class="bg-secondary text-white px-4 py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-primary md:w-96">
-                    <button type="submit" class="bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition duration-300">Suscribirse</button>
-                </form>
+        <!-- Stats Section -->
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div class="reveal">
+                        <div class="stats-number counter" data-target="75">0</div>
+                        <p class="text-gray-600 font-semibold text-lg">Años de Experiencia</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="stats-number counter" data-target="1947">0</div>
+                        <p class="text-gray-600 font-semibold text-lg">Año de Fundación</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="stats-number counter" data-target="6">0</div>
+                        <p class="text-gray-600 font-semibold text-lg">Marcas Activas</p>
+                    </div>
+                    <div class="reveal">
+                        <div class="stats-number counter" data-target="100">0</div>
+                        <p class="text-gray-600 font-semibold text-lg">% Producción Nacional</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Historia Section -->
+        <section id="historia" class="section-bg py-24 px-6">
+            <div class="container mx-auto">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nuestra Historia</h2>
+                        <div class="section-divider"></div>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Una trayectoria de innovación que ha marcado el rumbo de la industria eléctrica argentina</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                        <div class="reveal">
+                            <div class="space-y-8">
+                                <div class="timeline-item">
+                                    <h3 class="text-2xl font-bold text-primary mb-3">El Comienzo (1947)</h3>
+                                    <p class="text-gray-700 leading-relaxed">IMSA nace como una industria argentina pionera en soluciones para la conducción eléctrica, estableciendo su planta industrial en Merlo con una visión clara de transformar la industria eléctrica del país.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h3 class="text-2xl font-bold text-primary mb-3">Crecimiento y Expansión</h3>
+                                    <p class="text-gray-700 leading-relaxed">A lo largo de las décadas, hemos acompañado el crecimiento del país aportando tecnología, conocimiento y producción nacional al servicio de la energía, transformando desafíos técnicos en soluciones simples y confiables.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h3 class="text-2xl font-bold text-primary mb-3">Compromiso con la Calidad</h3>
+                                    <p class="text-gray-700 leading-relaxed">Nuestro compromiso con la calidad está presente en cada etapa del proceso productivo, respaldado por certificaciones internacionales y una cultura organizacional que valora el desarrollo humano y la responsabilidad social.</p>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <h3 class="text-2xl font-bold text-primary mb-3">Visión de Futuro</h3>
+                                    <p class="text-gray-700 leading-relaxed">Hoy seguimos apostando al futuro con una mirada innovadora, integradora y sostenible, siendo parte activa del progreso energético regional y expandiéndonos continuamente.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reveal">
+                            <div class="elegant-card p-8 rounded-2xl">
+                                <div class="text-center">
+                                    <div class="feature-icon floating-element">
+                                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Certificaciones Internacionales</h3>
+                                    <p class="text-gray-600 mb-6">Respaldados por los más altos estándares de calidad y seguridad industrial</p>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                            <div class="text-primary font-bold text-lg">ISO 9001</div>
+                                            <div class="text-sm text-gray-500">Gestión de Calidad</div>
+                                        </div>
+                                        <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                            <div class="text-primary font-bold text-lg">IRAM</div>
+                                            <div class="text-sm text-gray-500">Normas Argentinas</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trabajar en IMSA Section -->
+        <section class="py-24 px-6 bg-white">
+            <div class="container mx-auto">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 reveal">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Trabajar en IMSA</h2>
+                        <div class="section-divider"></div>
+                        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Somos más que un equipo: somos una gran familia comprometida con la excelencia y el desarrollo humano</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                        <div class="elegant-card p-8 rounded-2xl text-center reveal">
+                            <div class="feature-icon">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Capital Humano</h3>
+                            <p class="text-gray-600">El corazón de nuestro crecimiento son nuestros profesionales altamente calificados</p>
+                        </div>
+                        
+                        <div class="elegant-card p-8 rounded-2xl text-center reveal">
+                            <div class="feature-icon">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Bienestar Integral</h3>
+                            <p class="text-gray-600">Condiciones de trabajo dignas que cuidan la salud y fomentan el desarrollo</p>
+                        </div>
+                        
+                        <div class="elegant-card p-8 rounded-2xl text-center reveal">
+                            <div class="feature-icon">
+                                <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Familia IMSA</h3>
+                            <p class="text-gray-600">Un ambiente donde el compañerismo, respeto y compromiso son fundamentales</p>
+                        </div>
+                    </div>
+                    
+                    <div class="elegant-card p-12 rounded-2xl reveal">
+                        <div class="max-w-4xl mx-auto text-center space-y-6">
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                En IMSA creemos que el capital humano es el corazón de nuestro crecimiento. Contamos con un equipo de profesionales altamente calificados, respaldados por tecnología de última generación y sistemas de control continuo que aseguran respuestas rápidas, asistencia permanente y la plena satisfacción de nuestros clientes.
+                            </p>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                A lo largo de nuestra trayectoria en la ciudad de Merlo, hemos sostenido una preocupación constante por el bienestar de nuestros colaboradores. Promovemos condiciones de trabajo dignas, que cuidan la salud y fomentan tanto el desarrollo humano como profesional de cada integrante del equipo.
+                            </p>
+                            <p class="text-lg text-gray-700 leading-relaxed">
+                                En IMSA somos más que un equipo: somos una gran familia. Valoramos a cada persona por lo que aporta, respetando las individualidades y construyendo juntos un ambiente de trabajo donde el compañerismo, el respeto y el compromiso son fundamentales. <span class="text-primary font-semibold">Trabajar en IMSA es ser parte de un proyecto que crece con su gente, su comunidad y su compromiso con la excelencia.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestras Marcas Section -->
+        <section id="marcas" class="section-bg py-24 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900">Nuestras Marcas</h2>
+                    <div class="section-divider"></div>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Un ecosistema de marcas especializadas que amplían nuestro alcance y capacidades en toda la región</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    <!-- NEOROL -->
+                    <div class="brand-card p-8 rounded-2xl reveal">
+                        <div class="text-center">
+                            <div class="brand-logo">N</div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">NEOROL</h3>
+                            <p class="text-gray-600 mb-6">Fabricación de cables eléctricos en Uruguay, expandiendo nuestra presencia regional</p>
+                            <a href="https://www.neorol.com.uy/" target="_blank" class="elegant-btn text-sm">
+                                Visitar sitio web
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- ENNAR -->
+                    <div class="brand-card p-8 rounded-2xl reveal">
+                        <div class="text-center">
+                            <div class="brand-logo">E</div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">ENNAR</h3>
+                            <p class="text-gray-600 mb-6">Fabricación de conductores eléctricos en Paraguay, fortaleciendo el mercado regional</p>
+                            <div class="bg-gray-100 text-gray-500 px-6 py-3 rounded-full text-sm font-medium">
+                                Sitio web próximamente
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONDUTORES DO SUL -->
+                    <div class="brand-card p-8 rounded-2xl reveal">
+                        <div class="text-center">
+                            <div class="brand-logo">C</div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">CONDUTORES DO SUL</h3>
+                            <p class="text-gray-600 mb-6">Oficina comercial en Brasil, conectando mercados sudamericanos</p>
+                            <a href="https://condutoresdosul.com.br/" target="_blank" class="elegant-btn text-sm">
+                                Visitar sitio web
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- EFERGIA -->
+                    <div class="brand-card p-8 rounded-2xl reveal">
+                        <div class="text-center">
+                            <div class="brand-logo">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">EFERGIA</h3>
+                            <p class="text-gray-600 mb-6">Representante oficial de componentes para la industria solar fotovoltaica</p>
+                            <a href="https://efergia.com/" target="_blank" class="elegant-btn text-sm">
+                                Visitar sitio web
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- POWERMETER -->
+                    <div class="brand-card p-8 rounded-2xl reveal">
+                        <div class="text-center">
+                            <div class="brand-logo">
+                                <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-gray-900">POWERMETER</h3>
+                            <p class="text-gray-600 mb-6">Sistemas de medición basados en la nube, tecnología del futuro</p>
+                            <a href="https://www.powermeter.com.ar/" target="_blank" class="elegant-btn text-sm">
+                                Visitar sitio web
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- IMSA +PLUS -->
+                    <div class="brand-card p-8 rounded-2xl reveal lg:col-span-3 md:col-span-2">
+                        <div class="text-center max-w-4xl mx-auto">
+                            <div class="brand-logo mx-auto mb-6" style="width: 60px; height: 60px; font-size: 2rem;">+</div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">IMSA +PLUS</h3>
+                            <p class="text-gray-600 mb-8 text-lg">Unidad de negocio especializada en prolongadores eléctricos para uso doméstico e industrial</p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                    <div class="w-8 h-8 bg-primary rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="text-sm font-semibold text-gray-900">Resistencia al agua</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                    <div class="w-8 h-8 bg-primary rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="text-sm font-semibold text-gray-900">Luz indicadora</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                    <div class="w-8 h-8 bg-primary rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 12a1 1 0 102 0V7a1 1 0 10-2 0v5zM6 12a1 1 0 102 0V7a1 1 0 10-2 0v5zM13 12a1 1 0 102 0V7a1 1 0 10-2 0v5z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="text-sm font-semibold text-gray-900">Anti propagante</div>
+                                </div>
+                                <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                                    <div class="w-8 h-8 bg-primary rounded-full mx-auto mb-2 flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="text-sm font-semibold text-gray-900">Certificación IRAM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-24 px-6 bg-white">
+            <div class="container mx-auto text-center">
+                <div class="max-w-4xl mx-auto reveal">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">¿Listo para ser parte de la familia IMSA?</h2>
+                    <p class="text-xl mb-8 text-gray-600">Únete a más de 75 años de innovación, excelencia y crecimiento en la industria eléctrica</p>
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="contacto.html" class="elegant-btn">
+                            Únete a Nuestro Equipo
+                        </a>
+                        <a href="#historia" class="elegant-btn-outline">
+                            Conoce Más Sobre Nosotros
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-secondary py-16 px-6">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Contacto</h3>
-                <p class="mb-2">Email: info@imsa.com</p>
-                <p>Teléfono: +XX XXX XXX XXX</p>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Enlaces Rápidos</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" class="hover:text-primary transition duration-300">Sobre Nosotros</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Carreras</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Soporte Técnico</a></li>
-                    <li><a href="#" class="hover:text-primary transition duration-300">Política de Privacidad</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-xl font-semibold mb-6 text-primary">Síguenos</h3>
+    <footer class="text-white bg-black">
+        <!-- Sección Principal -->
+        <div class="container mx-auto px-6 py-10 bg-black">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10"
+                style="animation: fadeIn 0.8s ease-out forwards;">
+                <!-- Logo -->
+                <div class="mb-6 md:mb-0">
+                    <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo" class="h-10">
+                </div>
+
+                <!-- Redes Sociales -->
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+                        </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
                     </a>
-                    <a href="#" class="text-gray-400 hover:text-primary transition duration-300">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.344 3.608 1.32.975.975 1.257 2.242 1.32 3.608.058 1.266.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.344 2.633-1.32 3.608-.975.975-2.242 1.257-3.608 1.32-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.344-3.608-1.32-.975-.975-1.257-2.242-1.32-3.608-.058-1.266-.07-1.645-.07-4.85s.012-3.584.07-4.85c.062-1.366.344-2.633 1.32-3.608.975-.975 2.242-1.257 3.608-1.32 1.266-.058 1.645-.07 4.85-.07zm0-2.163C8.756 0 8.331.015 7.052.07c-1.529.065-2.888.362-3.995 1.47C2.95 2.949 2.653 4.308 2.588 5.837.015 7.052 0 7.333 0 12c0 4.667.015 4.948.07 6.168.065 1.529.362 2.888 1.47 3.995 1.107 1.107 2.466 1.404 3.995 1.47C8.331 23.985 8.756 24 12 24c4.667 0 4.948-.015 6.168-.07 1.529-.065 2.888-.362 3.995-1.47 1.107-1.107 1.404-2.466 1.47-3.995.055-1.22.07-1.501.07-6.168 0-4.667-.015-4.948-.07-6.168-.065-1.529-.362-2.888-1.47-3.995C21.056.432 19.697.135 18.168.07 16.948.015 16.667 0 12 0zm0 5.838c-3.403 0-6.162 2.76-6.162 6.163S8.597 18.164 12 18.164s6.162-2.76 6.162-6.163S15.403 5.838 12 5.838zm0 10.326c-2.296 0-4.163-1.868-4.163-4.163S9.704 7.837 12 7.837s4.163 1.868 4.163 4.163-1.868 4.163-4.163 4.163zm6.406-11.845a1.44 1.44 0 01-1.44-1.44c0-.794.646-1.44 1.44-1.44.795 0 1.44.646 1.44 1.44 0 .795-.645 1.44-1.44 1.44z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="social-icon flex items-center justify-center w-10 h-10 rounded-full">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
                     </a>
                 </div>
             </div>
+
+            <!-- Menú Principal -->
+            <div class="flex flex-wrap justify-center md:justify-between gap-8 mb-10 text-center md:text-left"
+                style="animation: fadeIn 0.8s ease-out 0.2s forwards; opacity: 0;">
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">COMPAÑÍA</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">MERCADOS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">CENTRO
+                    DE PRODUCTOS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">PERSONAS
+                    Y CARRERAS</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">INSIGHT</a>
+                <a href="#"
+                    class="footer-link text-white hover:text-primary text-sm uppercase font-semibold tracking-wider">POLÍTICA
+                    DE GESTIÓN</a>
+            </div>
+
+
         </div>
-        <div class="container mx-auto mt-12 pt-8 border-t border-gray-700 text-center text-sm text-gray-400">
-            © 2024 IMSA. Todos los derechos reservados.
+
+        <!-- Barra inferior -->
+        <div class="footer-bottom py-4">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+                    <p class="text-gray-400">© 2024 IMSA. Todos los derechos reservados</p>
+                    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                        <a href="#" class="footer-link text-gray-400">Mapa Web</a>
+                        <a href="#" class="footer-link text-gray-400">Información Legal</a>
+                        <a href="#" class="footer-link text-gray-400">Política de Privacidad</a>
+                        <a href="#" class="footer-link text-gray-400">Política de Cookies</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Animación de contadores
+            const counters = document.querySelectorAll('.counter');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+
+            // Animación de fade-in al hacer scroll
+            const fadeElems = document.querySelectorAll('.fade-in');
+
+            const fadeIn = (entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100');
+                        entry.target.classList.remove('opacity-0');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            };
+
+            const fadeObserver = new IntersectionObserver(fadeIn, {
+                root: null,
+                threshold: 0.1
+            });
+
+            fadeElems.forEach(elem => {
+                elem.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
+                fadeObserver.observe(elem);
+            });
+        });
+    </script>
+
+    <style>
+        .social-icon {
+            background: linear-gradient(135deg, #e31837, #ff4757);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(227, 24, 55, 0.3);
+        }
+        
+        .footer-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .footer-link:hover {
+            color: #e31837;
+        }
+        
+        .footer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #e31837;
+            transition: width 0.3s ease;
+        }
+        
+        .footer-link:hover::after {
+            width: 100%;
+        }
+        
+        .footer-bottom {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+            border-top: 1px solid #333;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Intersection Observer para animaciones
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Activar contadores cuando sean visibles
+                        if (entry.target.querySelector('.counter')) {
+                            animateCounters();
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos con animación
+            document.querySelectorAll('.reveal').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Animación de contadores
+            function animateCounters() {
+                const counters = document.querySelectorAll('.counter');
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 16);
+                });
+            }
+
+            // Smooth scroll para enlaces internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
