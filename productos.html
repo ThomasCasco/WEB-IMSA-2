@@ -651,6 +651,297 @@
             }
         }
 
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: rgba(26, 26, 26, 0.95);
+            border-radius: 1rem;
+            padding: 2rem;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-large {
+            width: 90vw;
+            max-width: 1000px;
+        }
+
+        .modal-small {
+            width: 90vw;
+            max-width: 400px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .modal-close {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .modal-close:hover {
+            background-color: rgba(227, 24, 55, 0.2);
+            color: #e31837;
+        }
+
+        .back-button {
+            background-color: transparent;
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .back-button:hover {
+            border-color: #e31837;
+            background-color: rgba(227, 24, 55, 0.1);
+            color: #e31837;
+        }
+
+        /* Subcategory options */
+        .subcategory-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .subcategory-option {
+            background-color: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .subcategory-option:hover {
+            border-color: #e31837;
+            background-color: rgba(227, 24, 55, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .subcategory-icon {
+            font-size: 2rem;
+            width: 4rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(227, 24, 55, 0.1);
+            border-radius: 1rem;
+        }
+
+        .subcategory-content {
+            flex: 1;
+        }
+
+        /* Products grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product-item {
+            background-color: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .product-item:hover {
+            border-color: #e31837;
+            background-color: rgba(227, 24, 55, 0.05);
+            transform: translateY(-5px);
+        }
+
+        .product-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-item-content {
+            padding: 1.5rem;
+        }
+
+        .product-item-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-item-description {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Product detail content */
+        .product-detail-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .product-detail-image img {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .specs-grid {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: rgba(40, 40, 40, 0.3);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .spec-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        .spec-value {
+            color: white;
+            font-weight: 600;
+        }
+
+        .product-actions {
+            margin-top: 2rem;
+        }
+
+        /* Form styles */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            color: white;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-input {
+            background-color: rgba(40, 40, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #e31837;
+            background-color: rgba(40, 40, 40, 0.8);
+        }
+
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-input:read-only {
+            background-color: rgba(60, 60, 60, 0.5);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        .success-icon {
+            animation: successPulse 0.6s ease-out;
+        }
+
+        @keyframes successPulse {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
         /* Container utilities */
         .container {
             width: 100%;
@@ -660,6 +951,51 @@
         }
 
         /* Responsive utilities */
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 1rem;
+                padding: 1.5rem;
+                max-height: 85vh;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .modal-close {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                margin: 0;
+            }
+
+            .product-detail-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subcategory-option {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .subcategory-icon {
+                width: 3rem;
+                height: 3rem;
+                font-size: 1.5rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+
         @media (min-width: 640px) {
             .sm\:flex {
                 display: flex;
@@ -835,7 +1171,7 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Product 1 -->
-                        <div class="product-card">
+                        <div class="product-card" onclick="openSubcategoryModal('cables-electricos')">
                             <div class="product-overlay"></div>
                             <img src="img/Portada_Cables_v2_37x50.png" alt="Cable Eléctrico" class="product-image">
                             <div class="product-content">
@@ -853,7 +1189,7 @@
                         </div>
                         
                         <!-- Product 2 -->
-                        <div class="product-card">
+                        <div class="product-card" onclick="openSubcategoryModal('alambres-esmaltados')">
                             <div class="product-overlay"></div>
                             <img src="img/Portada_Conductores_37x50.png" alt="Alambre Esmaltado" class="product-image">
                             <div class="product-content">
@@ -871,7 +1207,7 @@
                         </div>
                         
                         <!-- Product 3 -->
-                        <div class="product-card">
+                        <div class="product-card" onclick="openSubcategoryModal('cables-especiales')">
                             <div class="product-overlay"></div>
                             <img src="img/Portadas_ImalumHE_v2.png" alt="Cable Especial" class="product-image">
                             <div class="product-content">
@@ -1043,8 +1379,181 @@
                 </div>
             </section>
 
-            
         </main>
+
+        <!-- Modals -->
+        <!-- Subcategory Selection Modal -->
+        <div id="subcategory-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title" class="text-2xl font-bold text-white mb-2"></h3>
+                    <p class="text-gray-300 mb-6">Selecciona el tipo de aplicación para ver productos específicos</p>
+                    <button class="modal-close" onclick="closeModal('subcategory-modal')">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="subcategory-options">
+                    <!-- Subcategories will be dynamically generated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Listing Modal -->
+        <div id="product-listing-modal" class="modal-overlay">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <div>
+                        <button class="back-button" onclick="goBackToSubcategory()">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Volver
+                        </button>
+                        <h3 id="listing-title" class="text-2xl font-bold text-white mb-2"></h3>
+                        <p id="listing-description" class="text-gray-300"></p>
+                    </div>
+                    <button class="modal-close" onclick="closeAllModals()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div id="products-grid" class="products-grid">
+                    <!-- Products will be dynamically loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Modal -->
+        <div id="product-detail-modal" class="modal-overlay">
+            <div class="modal-content modal-large">
+                <div class="modal-header">
+                    <div>
+                        <button class="back-button" onclick="goBackToListing()">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Volver al listado
+                        </button>
+                        <h3 id="detail-title" class="text-2xl font-bold text-white mb-2"></h3>
+                    </div>
+                    <button class="modal-close" onclick="closeAllModals()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="product-detail-content">
+                    <div class="product-detail-image">
+                        <img id="detail-image" src="" alt="" class="w-full h-64 object-cover rounded-lg">
+                    </div>
+                    
+                    <div class="product-detail-info">
+                        <div class="product-specs">
+                            <h4 class="text-lg font-semibold text-white mb-4">Especificaciones Técnicas</h4>
+                            <div id="detail-specs" class="specs-grid">
+                                <!-- Specs will be dynamically loaded -->
+                            </div>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button id="download-pdf-btn" class="btn-primary w-full mb-4" onclick="downloadPDF()">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-4-4m4 4l4-4m6-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2v-4z"></path>
+                                </svg>
+                                Descargar Ficha Técnica PDF
+                            </button>
+                            
+                            <button class="btn-secondary w-full" onclick="showContactForm()">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                                Solicitar Información
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form Modal -->
+        <div id="contact-form-modal" class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Solicitar Información</h3>
+                        <p class="text-gray-300">Completa el formulario y nos pondremos en contacto contigo</p>
+                    </div>
+                    <button class="modal-close" onclick="closeModal('contact-form-modal')">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form id="contact-form" class="contact-form" onsubmit="submitContactForm(event)">
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Nombre completo *</label>
+                        <input type="text" id="contact-name" name="name" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Correo electrónico *</label>
+                        <input type="email" id="contact-email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-phone" class="form-label">Teléfono</label>
+                        <input type="tel" id="contact-phone" name="phone" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-product" class="form-label">Producto de interés</label>
+                        <input type="text" id="contact-product" name="product" class="form-input" readonly>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Mensaje adicional</label>
+                        <textarea id="contact-message" name="message" rows="4" class="form-input" placeholder="Describe tus necesidades o consultas específicas..."></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" onclick="closeModal('contact-form-modal')">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                            Enviar Solicitud
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal-overlay">
+            <div class="modal-content modal-small">
+                <div class="text-center">
+                    <div class="success-icon mb-4">
+                        <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">¡Solicitud Enviada!</h3>
+                    <p class="text-gray-300 mb-6">Hemos recibido tu consulta. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+                    <button class="btn-primary w-full" onclick="closeAllModals()">
+                        Continuar
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer class="footer">
@@ -1111,6 +1620,587 @@
 
     <!-- Scripts -->
     <script>
+        // Global variables for navigation state
+        let currentProductCategory = '';
+        let currentSubcategory = '';
+        let currentProduct = null;
+
+        // Product data structure
+        const productData = {
+            'cables-electricos': {
+                title: 'Cables Eléctricos',
+                subcategories: {
+                    domiciliaria: {
+                        title: 'Línea Domiciliaria - Cables Eléctricos',
+                        description: 'Cables especialmente diseñados para instalaciones residenciales y comerciales',
+                        products: [
+                            {
+                                id: 'plastix-cf',
+                                name: 'Plastix CF',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable flexible de cobre con aislamiento PVC para instalaciones domiciliarias',
+                                specs: {
+                                    'Tipo': 'Cable flexible',
+                                    'Material conductor': 'Cobre electrolítico',
+                                    'Aislamiento': 'PVC',
+                                    'Aplicación': 'Instalaciones domiciliarias',
+                                    'Normas': 'IRAM 2183'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/linea-domiciliaria/Plastix CF.pdf'
+                            },
+                            {
+                                id: 'plastix-ch',
+                                name: 'Plastix CH',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable rígido de cobre con aislamiento PVC para instalaciones fijas',
+                                specs: {
+                                    'Tipo': 'Cable rígido',
+                                    'Material conductor': 'Cobre electrolítico',
+                                    'Aislamiento': 'PVC',
+                                    'Aplicación': 'Instalaciones fijas',
+                                    'Normas': 'IRAM 2183'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/linea-domiciliaria/Plastix CH.pdf'
+                            },
+                            {
+                                id: 'plastix-hf',
+                                name: 'Plastix HF',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable libre de halógenos para ambientes con requerimientos especiales',
+                                specs: {
+                                    'Tipo': 'Libre de halógenos',
+                                    'Material conductor': 'Cobre electrolítico',
+                                    'Aislamiento': 'LSZH',
+                                    'Aplicación': 'Ambientes especiales',
+                                    'Características': 'Baja emisión de humos'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/linea-domiciliaria/Plastix HF.pdf'
+                            },
+                            {
+                                id: 'plastix-r',
+                                name: 'Plastix R',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable resistente para instalaciones domiciliarias de alta durabilidad',
+                                specs: {
+                                    'Tipo': 'Alta resistencia',
+                                    'Material conductor': 'Cobre electrolítico',
+                                    'Aislamiento': 'PVC reforzado',
+                                    'Aplicación': 'Instalaciones de alta exigencia',
+                                    'Características': 'Mayor durabilidad'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/linea-domiciliaria/Plastix R.pdf'
+                            },
+                            {
+                                id: 'plastix-x',
+                                name: 'Plastix X',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable de alta performance para aplicaciones domiciliarias exigentes',
+                                specs: {
+                                    'Tipo': 'Alta performance',
+                                    'Material conductor': 'Cobre electrolítico',
+                                    'Aislamiento': 'PVC especial',
+                                    'Aplicación': 'Aplicaciones exigentes',
+                                    'Características': 'Máximo rendimiento'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/linea-domiciliaria/Plastix X.pdf'
+                            }
+                        ]
+                    },
+                    industrial: {
+                        title: 'Instalaciones Industriales - Cables Eléctricos',
+                        description: 'Cables robustos para aplicaciones industriales de alta exigencia',
+                        products: [
+                            {
+                                id: 'payton-hf-1kv-superflex',
+                                name: 'Payton HF 1 kV Superflex',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable superflexible libre de halógenos para aplicaciones industriales móviles',
+                                specs: {
+                                    'Voltaje': '1 kV',
+                                    'Tipo': 'Superflexible',
+                                    'Material conductor': 'Cobre cableado',
+                                    'Aislamiento': 'LSZH',
+                                    'Aplicación': 'Equipos móviles industriales',
+                                    'Características': 'Libre de halógenos'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton HF 1 kV Superflex (1).pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-13-2kv-cat1-uni',
+                                name: 'Payton XLPE 13,2 kV Cat I Unipolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable unipolar de media tensión con aislamiento XLPE para redes de distribución',
+                                specs: {
+                                    'Voltaje': '13,2 kV',
+                                    'Categoría': 'Cat I',
+                                    'Tipo': 'Unipolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Redes de distribución',
+                                    'Normas': 'IRAM 2178'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 13,2 kV Cat I UNIPOLARES.pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-13-2kv-cat2-tri',
+                                name: 'Payton XLPE 13,2 kV Cat II Tripolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable tripolar de media tensión con pantalla metálica para instalaciones subterráneas',
+                                specs: {
+                                    'Voltaje': '13,2 kV',
+                                    'Categoría': 'Cat II',
+                                    'Tipo': 'Tripolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Instalaciones subterráneas',
+                                    'Características': 'Con pantalla metálica'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 13,2 kV Cat II TRIPOLARES.pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-13-2kv-cat2-uni',
+                                name: 'Payton XLPE 13,2 kV Cat II Unipolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable unipolar de media tensión con pantalla metálica para redes urbanas',
+                                specs: {
+                                    'Voltaje': '13,2 kV',
+                                    'Categoría': 'Cat II',
+                                    'Tipo': 'Unipolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Redes urbanas',
+                                    'Características': 'Con pantalla metálica'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 13,2 kV Cat II UNIPOLARES.pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-33kv-cat1-tri',
+                                name: 'Payton XLPE 33 kV Cat I Tripolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable tripolar de alta tensión para transmisión de energía en redes principales',
+                                specs: {
+                                    'Voltaje': '33 kV',
+                                    'Categoría': 'Cat I',
+                                    'Tipo': 'Tripolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Transmisión de energía',
+                                    'Características': 'Alta tensión'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 33 kV Cat I TRIPOLARES.pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-33kv-cat1-uni',
+                                name: 'Payton XLPE 33 kV Cat I Unipolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable unipolar de alta tensión para sistemas de transmisión industrial',
+                                specs: {
+                                    'Voltaje': '33 kV',
+                                    'Categoría': 'Cat I',
+                                    'Tipo': 'Unipolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Sistemas de transmisión',
+                                    'Características': 'Alta tensión'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 33 kV Cat I UNIPOLARES.pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-66kv-uni',
+                                name: 'Payton XLPE 66 kV Unipolares',
+                                image: 'img/Portada_Cables_v2_37x50.png',
+                                description: 'Cable unipolar de muy alta tensión para grandes sistemas de transmisión',
+                                specs: {
+                                    'Voltaje': '66 kV',
+                                    'Tipo': 'Unipolar',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Grandes sistemas de transmisión',
+                                    'Características': 'Muy alta tensión',
+                                    'Normas': 'IEC 60840'
+                                },
+                                pdfUrl: 'public/productos/cables-electricos/instalaciones-industriales/Payton XLPE 66 kV UNIPOLARES.pdf'
+                            }
+                        ]
+                    }
+                }
+            },
+            'cables-especiales': {
+                title: 'Cables Especiales',
+                subcategories: {
+                    'energia-renovable': {
+                        title: 'Energía Renovable - Cables Especiales',
+                        description: 'Cables especializados para sistemas de energía solar y renovable',
+                        products: [
+                            {
+                                id: 'payton-soltix',
+                                name: 'Payton Soltix',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable solar especialmente diseñado para instalaciones fotovoltaicas',
+                                specs: {
+                                    'Aplicación': 'Sistemas fotovoltaicos',
+                                    'Resistencia UV': 'Excelente',
+                                    'Temperatura': '-40°C a +90°C',
+                                    'Aislamiento': 'XLPE solar',
+                                    'Características': 'Resistente a intemperie',
+                                    'Normas': 'EN 50618'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/energia-renovable/Payton Soltix.pdf'
+                            },
+                            {
+                                id: 'payton-torsionable',
+                                name: 'Payton Torsionable',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable especial para aplicaciones con movimientos de torsión en sistemas renovables',
+                                specs: {
+                                    'Aplicación': 'Sistemas con movimiento',
+                                    'Características': 'Alta flexibilidad torsional',
+                                    'Ciclos de torsión': 'Hasta 5 millones',
+                                    'Material conductor': 'Cobre cableado especial',
+                                    'Aislamiento': 'TPU',
+                                    'Temperatura': '-30°C a +80°C'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/energia-renovable/Payton Torsionable.pdf'
+                            }
+                        ]
+                    },
+                    'industria-minera': {
+                        title: 'Industria Minera - Cables Especiales',
+                        description: 'Cables robustos diseñados para las condiciones extremas de la minería',
+                        products: [
+                            {
+                                id: 'payton-tpu-shd-g-gc',
+                                name: 'Payton TPU (SHD-G-GC Type)',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable con cubierta TPU para equipos móviles en minería subterránea',
+                                specs: {
+                                    'Aplicación': 'Minería subterránea',
+                                    'Cubierta': 'TPU resistente',
+                                    'Características': 'Resistente a aceites y abrasión',
+                                    'Flexibilidad': 'Alta',
+                                    'Temperatura': '-25°C a +80°C',
+                                    'Normas': 'Mining standards'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-minera/Payton TPU (SHD-G-GC Type).pdf'
+                            },
+                            {
+                                id: 'payton-tpu-diesel-locomotive',
+                                name: 'Payton TPU Diesel Locomotive',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable especializado para locomotoras diesel en aplicaciones mineras',
+                                specs: {
+                                    'Aplicación': 'Locomotoras diesel mineras',
+                                    'Cubierta': 'TPU reforzado',
+                                    'Resistencia': 'Vibración y tracción',
+                                    'Temperatura': '-40°C a +105°C',
+                                    'Características': 'Resistente a combustibles',
+                                    'Flexibilidad': 'Extrema'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-minera/Payton TPU Diesel Locomotive .pdf'
+                            },
+                            {
+                                id: 'payton-tpu-superflex-minero',
+                                name: 'Payton TPU Superflex (Minería)',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable superflexible con cubierta TPU para equipos móviles mineros',
+                                specs: {
+                                    'Aplicación': 'Equipos móviles mineros',
+                                    'Cubierta': 'TPU superflexible',
+                                    'Características': 'Máxima flexibilidad',
+                                    'Resistencia': 'Abrasión extrema',
+                                    'Temperatura': '-30°C a +80°C',
+                                    'Radio de curvatura': 'Mínimo'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-minera/Payton TPU Superflex .pdf'
+                            },
+                            {
+                                id: 'payton-xlpe-self-supporting',
+                                name: 'Payton XLPE Self Supporting',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable autoportante XLPE para instalaciones mineras aéreas',
+                                specs: {
+                                    'Aplicación': 'Instalaciones aéreas mineras',
+                                    'Tipo': 'Autoportante',
+                                    'Aislamiento': 'XLPE',
+                                    'Soporte': 'Cable mensajero integrado',
+                                    'Características': 'Sin necesidad de estructura adicional',
+                                    'Resistencia': 'Condiciones climáticas extremas'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-minera/Payton XLPE Self Supporting.pdf'
+                            }
+                        ]
+                    },
+                    'industria-petrolera-y-gas': {
+                        title: 'Industria Petrolera y Gas - Cables Especiales',
+                        description: 'Cables especializados para ambientes explosivos y corrosivos del sector petrolero',
+                        products: [
+                            {
+                                id: 'flexidur-fl',
+                                name: 'Flexidur FL',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable flexible para ambientes con hidrocarburos y químicos agresivos',
+                                specs: {
+                                    'Aplicación': 'Ambientes con hidrocarburos',
+                                    'Cubierta': 'Resistente a químicos',
+                                    'Características': 'Anti-llama',
+                                    'Flexibilidad': 'Alta',
+                                    'Temperatura': '-25°C a +90°C',
+                                    'Resistencia': 'Aceites y combustibles'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-petrolera-y-gas/flexidur FL.pdf'
+                            },
+                            {
+                                id: 'payton-hf-1kv-superflex-petroleo',
+                                name: 'Payton HF 1 kV Superflex (Petróleo)',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable superflexible libre de halógenos para equipos petrolíferos',
+                                specs: {
+                                    'Voltaje': '1 kV',
+                                    'Aplicación': 'Equipos petrolíferos',
+                                    'Características': 'Libre de halógenos',
+                                    'Flexibilidad': 'Superflex',
+                                    'Resistencia': 'Ambientes explosivos',
+                                    'Temperatura': '-30°C a +80°C'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-petrolera-y-gas/Payton HF 1 kV Superflex.pdf'
+                            },
+                            {
+                                id: 'payton-tpu-superflex-petroleo',
+                                name: 'Payton TPU Superflex (Petróleo)',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable con cubierta TPU para aplicaciones petrolíferas extremas',
+                                specs: {
+                                    'Aplicación': 'Industria petrolífera',
+                                    'Cubierta': 'TPU especial',
+                                    'Características': 'Resistente a hidrocarburos',
+                                    'Flexibilidad': 'Extrema',
+                                    'Temperatura': '-40°C a +80°C',
+                                    'Certificaciones': 'ATEX, IECEx'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/industria-petrolera-y-gas/Payton TPU Superflex .pdf'
+                            }
+                        ]
+                    },
+                    'instrumentacion-y-comando': {
+                        title: 'Instrumentación y Comando - Cables Especiales',
+                        description: 'Cables para sistemas de control, instrumentación y automatización industrial',
+                        products: [
+                            {
+                                id: 'comander-cf',
+                                name: 'Comander CF',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable de control flexible para sistemas de automatización',
+                                specs: {
+                                    'Aplicación': 'Sistemas de control',
+                                    'Tipo': 'Flexible',
+                                    'Pantalla': 'Blindaje electromagnético',
+                                    'Conductores': 'Múltiples pares',
+                                    'Características': 'Baja capacitancia',
+                                    'Temperatura': '-10°C a +70°C'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/instrumentacion-y-comando/Comander CF.pdf'
+                            },
+                            {
+                                id: 'comander-in',
+                                name: 'Comander IN',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable de instrumentación para señales analógicas y digitales',
+                                specs: {
+                                    'Aplicación': 'Instrumentación industrial',
+                                    'Tipo': 'Señales analógicas/digitales',
+                                    'Pantalla': 'Blindaje individual y general',
+                                    'Impedancia': 'Controlada',
+                                    'Características': 'Baja interferencia',
+                                    'Normas': 'IEC 60092'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/instrumentacion-y-comando/Comander IN.pdf'
+                            },
+                            {
+                                id: 'comander-r',
+                                name: 'Comander R',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable de comando resistente para ambientes industriales severos',
+                                specs: {
+                                    'Aplicación': 'Comando industrial',
+                                    'Características': 'Alta resistencia mecánica',
+                                    'Cubierta': 'PVC reforzado',
+                                    'Pantalla': 'Blindaje metálico',
+                                    'Temperatura': '-20°C a +80°C',
+                                    'Flexibilidad': 'Media'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/instrumentacion-y-comando/Comander R .pdf'
+                            }
+                        ]
+                    },
+                    'linea-aerea': {
+                        title: 'Línea Aérea - Cables Especiales',
+                        description: 'Conductores y cables para líneas de transmisión y distribución aérea',
+                        products: [
+                            {
+                                id: 'ccdd',
+                                name: 'CCDD',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor concéntrico desnudo para distribución aérea',
+                                specs: {
+                                    'Aplicación': 'Distribución aérea',
+                                    'Tipo': 'Concéntrico desnudo',
+                                    'Material': 'Aluminio/Acero',
+                                    'Características': 'Alta resistencia mecánica',
+                                    'Normas': 'IRAM 2187',
+                                    'Uso': 'Líneas de distribución'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/CCDD .pdf'
+                            },
+                            {
+                                id: 'conductores-accc',
+                                name: 'Conductores ACCC',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor de aluminio con núcleo compuesto de carbono para alta eficiencia',
+                                specs: {
+                                    'Tipo': 'ACCC (Aluminum Conductor Composite Core)',
+                                    'Núcleo': 'Fibra de carbono',
+                                    'Características': 'Baja flecha, alta capacidad',
+                                    'Temperatura': 'Hasta 200°C',
+                                    'Aplicación': 'Transmisión de alta eficiencia',
+                                    'Ventajas': 'Menor peso, mayor capacidad'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Conductores ACCC.pdf'
+                            },
+                            {
+                                id: 'etix-acometida-concentrico',
+                                name: 'Etix Acometida Concéntrico',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable concéntrico para acometidas domiciliarias aéreas',
+                                specs: {
+                                    'Aplicación': 'Acometidas domiciliarias',
+                                    'Tipo': 'Concéntrico',
+                                    'Conductor': 'Aluminio',
+                                    'Neutro': 'Concéntrico de aluminio',
+                                    'Aislamiento': 'XLPE',
+                                    'Instalación': 'Aérea'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Etix Acometida Concentrico.pdf'
+                            },
+                            {
+                                id: 'etix-acometida',
+                                name: 'Etix Acometida',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable para acometidas residenciales y comerciales',
+                                specs: {
+                                    'Aplicación': 'Acometidas residenciales',
+                                    'Conductores': 'Aluminio',
+                                    'Aislamiento': 'XLPE',
+                                    'Características': 'Resistente a UV',
+                                    'Instalación': 'Aérea/Subterránea',
+                                    'Normas': 'IRAM 2178'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Etix Acometida.pdf'
+                            },
+                            {
+                                id: 'etix-distribucion',
+                                name: 'Etix Distribución',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable para redes de distribución eléctrica urbana',
+                                specs: {
+                                    'Aplicación': 'Redes de distribución',
+                                    'Voltaje': 'Media tensión',
+                                    'Conductores': 'Aluminio',
+                                    'Aislamiento': 'XLPE',
+                                    'Pantalla': 'Semiconductora',
+                                    'Instalación': 'Subterránea'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Etix Distribucion .pdf'
+                            },
+                            {
+                                id: 'etix-mt',
+                                name: 'Etix MT',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Cable de media tensión para redes de distribución primaria',
+                                specs: {
+                                    'Aplicación': 'Media tensión',
+                                    'Voltaje': '13,2 - 33 kV',
+                                    'Conductores': 'Aluminio/Cobre',
+                                    'Aislamiento': 'XLPE',
+                                    'Pantalla': 'Cinta de cobre',
+                                    'Normas': 'IRAM 2178'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Etix MT.pdf'
+                            },
+                            {
+                                id: 'imalal-xlpe',
+                                name: 'Imalal XLPE',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor de aluminio con aislamiento XLPE para líneas aéreas',
+                                specs: {
+                                    'Material': 'Aluminio',
+                                    'Aislamiento': 'XLPE',
+                                    'Aplicación': 'Líneas aéreas aisladas',
+                                    'Características': 'Resistente a intemperie',
+                                    'Ventajas': 'Menor mantenimiento',
+                                    'Instalación': 'Aérea'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Imalal XLPE.pdf'
+                            },
+                            {
+                                id: 'imalal',
+                                name: 'Imalal',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor desnudo de aluminio para líneas de transmisión',
+                                specs: {
+                                    'Material': 'Aluminio puro',
+                                    'Tipo': 'Conductor desnudo',
+                                    'Aplicación': 'Líneas de transmisión',
+                                    'Características': 'Alta conductividad',
+                                    'Normas': 'IRAM 2187',
+                                    'Temple': 'Semiduro'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Imalal.pdf'
+                            },
+                            {
+                                id: 'imalum',
+                                name: 'Imalum',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor ACSR (Aluminum Conductor Steel Reinforced) para líneas aéreas',
+                                specs: {
+                                    'Tipo': 'ACSR',
+                                    'Material': 'Aluminio/Acero',
+                                    'Aplicación': 'Líneas de transmisión',
+                                    'Características': 'Alta resistencia mecánica',
+                                    'Núcleo': 'Acero galvanizado',
+                                    'Normas': 'IRAM 2187'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Imalum .pdf'
+                            },
+                            {
+                                id: 'imalum-astm-b232',
+                                name: 'Imalum ASTM B232',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor ACSR según norma ASTM B232 para aplicaciones internacionales',
+                                specs: {
+                                    'Tipo': 'ACSR',
+                                    'Norma': 'ASTM B232',
+                                    'Material': 'Aluminio 1350/Acero',
+                                    'Aplicación': 'Transmisión internacional',
+                                    'Características': 'Estándar internacional',
+                                    'Galvanizado': 'Clase A'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Imalum ASTM B232.pdf'
+                            },
+                            {
+                                id: 'procompact',
+                                name: 'Procompact',
+                                image: 'img/Portadas_ImalumHE_v2.png',
+                                description: 'Conductor compacto para líneas de transmisión de alta eficiencia',
+                                specs: {
+                                    'Tipo': 'Conductor compacto',
+                                    'Características': 'Menor diámetro, mayor capacidad',
+                                    'Aplicación': 'Transmisión de alta eficiencia',
+                                    'Ventajas': 'Menor corona, menor ruido',
+                                    'Material': 'Aluminio compactado',
+                                    'Núcleo': 'Acero de alta resistencia'
+                                },
+                                pdfUrl: 'public/productos/cables-especiales/linea-aerea/Procompact.pdf'
+                            }
+                        ]
+                    }
+                }
+            }
+        };
+
         document.addEventListener('DOMContentLoaded', (event) => {
             // Create particles
             const particlesContainer = document.getElementById('particles-container');
@@ -1134,23 +2224,6 @@
                 
                 particlesContainer.appendChild(particle);
             }
-            
-            // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-                    
-                    // Add active class to clicked button and corresponding content
-                    button.classList.add('active');
-                    const tabId = button.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                });
-            });
             
             // Video play/pause functionality
             const video = document.getElementById('industries-video');
@@ -1200,6 +2273,224 @@
             document.querySelectorAll('.card, .product-card, .industry-card, .feature-card').forEach(el => {
                 observer.observe(el);
             });
+
+            // Close modals when clicking outside
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('modal-overlay')) {
+                    closeAllModals();
+                }
+            });
+        });
+
+        // Modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function closeAllModals() {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = 'auto';
+        }
+
+        // Product navigation functions
+        function openSubcategoryModal(productCategory) {
+            currentProductCategory = productCategory;
+            const productInfo = productData[productCategory];
+            
+            if (productInfo) {
+                document.getElementById('modal-title').textContent = productInfo.title;
+                
+                // Generate subcategory options dynamically
+                const subcategoryContainer = document.querySelector('.subcategory-options');
+                subcategoryContainer.innerHTML = '';
+                
+                Object.entries(productInfo.subcategories).forEach(([key, subcategory]) => {
+                    const subcategoryDiv = document.createElement('div');
+                    subcategoryDiv.className = 'subcategory-option';
+                    subcategoryDiv.onclick = () => showProductListing(key);
+                    
+                    // Define icons for each subcategory
+                    const icons = {
+                        'domiciliaria': '🏠',
+                        'industrial': '⚙️',
+                        'energia-renovable': '☀️',
+                        'industria-minera': '⛏️',
+                        'industria-petrolera-y-gas': '🛢️',
+                        'instrumentacion-y-comando': '🔧',
+                        'linea-aerea': '⚡'
+                    };
+                    
+                    subcategoryDiv.innerHTML = `
+                        <div class="subcategory-icon">
+                            ${icons[key] || '📦'}
+                        </div>
+                        <div class="subcategory-content">
+                            <h4 class="text-xl font-semibold text-white mb-2">${subcategory.title.split(' - ')[0]}</h4>
+                            <p class="text-gray-300">${subcategory.description}</p>
+                        </div>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    `;
+                    
+                    subcategoryContainer.appendChild(subcategoryDiv);
+                });
+                
+                openModal('subcategory-modal');
+            }
+        }
+
+        function showProductListing(subcategory) {
+            currentSubcategory = subcategory;
+            const categoryData = productData[currentProductCategory];
+            const subcategoryData = categoryData.subcategories[subcategory];
+            
+            if (subcategoryData) {
+                // Update modal content
+                document.getElementById('listing-title').textContent = subcategoryData.title;
+                document.getElementById('listing-description').textContent = subcategoryData.description;
+                
+                // Generate products grid
+                const productsGrid = document.getElementById('products-grid');
+                productsGrid.innerHTML = '';
+                
+                subcategoryData.products.forEach(product => {
+                    const productElement = createProductElement(product);
+                    productsGrid.appendChild(productElement);
+                });
+                
+                // Close subcategory modal and open listing modal
+                closeModal('subcategory-modal');
+                openModal('product-listing-modal');
+            }
+        }
+
+        function createProductElement(product) {
+            const productDiv = document.createElement('div');
+            productDiv.className = 'product-item';
+            productDiv.onclick = () => showProductDetail(product);
+            
+            productDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-item-image">
+                <div class="product-item-content">
+                    <h4 class="product-item-title">${product.name}</h4>
+                    <p class="product-item-description">${product.description}</p>
+                </div>
+            `;
+            
+            return productDiv;
+        }
+
+        function showProductDetail(product) {
+            currentProduct = product;
+            
+            // Update modal content
+            document.getElementById('detail-title').textContent = product.name;
+            document.getElementById('detail-image').src = product.image;
+            document.getElementById('detail-image').alt = product.name;
+            
+            // Generate specs
+            const specsGrid = document.getElementById('detail-specs');
+            specsGrid.innerHTML = '';
+            
+            Object.entries(product.specs).forEach(([label, value]) => {
+                const specDiv = document.createElement('div');
+                specDiv.className = 'spec-item';
+                specDiv.innerHTML = `
+                    <span class="spec-label">${label}</span>
+                    <span class="spec-value">${value}</span>
+                `;
+                specsGrid.appendChild(specDiv);
+            });
+            
+            // Close listing modal and open detail modal
+            closeModal('product-listing-modal');
+            openModal('product-detail-modal');
+        }
+
+        function downloadPDF() {
+            if (currentProduct && currentProduct.pdfUrl) {
+                // Simulate PDF download
+                const link = document.createElement('a');
+                link.href = currentProduct.pdfUrl;
+                link.download = `${currentProduct.name.replace(/\s+/g, '-')}.pdf`;
+                link.click();
+                
+                // Show contact form after download
+                setTimeout(() => {
+                    showContactForm();
+                }, 1000);
+            } else {
+                // If no PDF URL, show message and go to contact form
+                alert('La ficha técnica estará disponible próximamente. Te dirigiremos al formulario de contacto.');
+                showContactForm();
+            }
+        }
+
+        function showContactForm() {
+            if (currentProduct) {
+                document.getElementById('contact-product').value = currentProduct.name;
+            }
+            
+            closeModal('product-detail-modal');
+            openModal('contact-form-modal');
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                product: formData.get('product'),
+                message: formData.get('message')
+            };
+            
+            // Simulate form submission
+            console.log('Formulario enviado:', data);
+            
+            // Close contact form and show success modal
+            closeModal('contact-form-modal');
+            openModal('success-modal');
+            
+            // Reset form
+            event.target.reset();
+        }
+
+        // Navigation functions
+        function goBackToSubcategory() {
+            closeModal('product-listing-modal');
+            openModal('subcategory-modal');
+        }
+
+        function goBackToListing() {
+            closeModal('product-detail-modal');
+            openModal('product-listing-modal');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeAllModals();
+            }
         });
     </script>
 </body>
