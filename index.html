@@ -26,27 +26,27 @@
     <link rel="stylesheet" href="./styles/index.css">
 </head>
 
-<body class="bg-black text-white font-sans">
-    <header class="fixed w-full z-10 bg-black bg-opacity-90 backdrop-blur-md">
+<body class="bg-white text-gray-900 font-sans">
+    <header class="fixed w-full z-10 bg-white bg-opacity-90 backdrop-blur-md shadow-sm">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="logo">
                     <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo"
-                        class="h-8 transition-transform duration-300 hover:scale-110">
+                        class="h-8 transition-transform duration-300 hover:scale-110 invert">
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#inicio"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Inicio</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Inicio</a>
                     <a href="productos.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Productos</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Productos</a>
                     <a href="servicios.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Servicios</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Servicios</a>
                     <a href="nosotros.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Nosotros</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Nosotros</a>
                     <a href="contacto.html"
                         class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition duration-300">Contacto</a>
                 </div>
-                <button class="md:hidden text-white">
+                <button class="md:hidden text-gray-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -58,7 +58,7 @@
     </header>
 
     <main>
-        <section id="inicio" class="relative h-screen flex items-center bg-black overflow-hidden">
+        <section id="inicio" class="relative h-screen flex items-center bg-black overflow-hidden text-white">
             <div class="absolute inset-0">
                 <video autoplay loop muted playsinline class="w-full h-full object-cover object-center opacity-50">
                     <source src="./9802-IMS Banner animado 03-tablet.mp4" type="video/mp4" media="(max-width: 767px)">
@@ -135,27 +135,27 @@
             <div class="absolute inset-0">
                 <img src="img/clark_men.png"
                     alt="Ciudad"
-                    class="w-full h-full object-cover opacity-60 transition-transform duration-700 transform scale-105 hover:scale-100">
-                <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+                    class="w-full h-full object-cover opacity-20 transition-transform duration-700 transform scale-105 hover:scale-100">
+                <div class="absolute inset-0 bg-gradient-to-b from-white/70 via-white/50 to-white/70"></div>
             </div>
             <div class="container mx-auto relative z-10">
                 <div class="flex flex-col md:flex-row justify-center gap-8">
                     <div
                         class="card-animate w-full md:w-1/2 vision-mission-card p-8 rounded-lg shadow-lg overflow-hidden relative">
-                        <h3 class="text-2xl font-semibold mb-4 text-white flex items-center">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900 flex items-center">
                             <span class="text-primary mr-2">01.</span>
                             <span>Visión</span>
                         </h3>
-                        <p class="text-gray-200">Ser la compañía más valorada del mercado del cual participamos, por
+                        <p class="text-gray-700">Ser la compañía más valorada del mercado del cual participamos, por
                             desarrollar y brindar las mejores soluciones de conducción eléctrica.</p>
                     </div>
                     <div
                         class="card-animate w-full md:w-1/2 vision-mission-card p-8 rounded-lg shadow-lg overflow-hidden relative">
-                        <h3 class="text-2xl font-semibold mb-4 text-white flex items-center">
+                        <h3 class="text-2xl font-semibold mb-4 text-gray-900 flex items-center">
                             <span class="text-primary mr-2">02.</span>
                             <span>Misión</span>
                         </h3>
-                        <p class="text-gray-200">Resolver las necesidades de conducción de energía eléctrica, sea cual
+                        <p class="text-gray-700">Resolver las necesidades de conducción de energía eléctrica, sea cual
                             fuere el desafío planteado. Simplificar situaciones complejas de nuestros clientes.</p>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
 
 
 
-        <section id="proyectos" class="relative overflow-hidden bg-black">
+        <section id="proyectos" class="relative overflow-hidden bg-white">
             <div class="grid grid-cols-1 md:grid-cols-3">
                 <!-- Proyecto 1 -->
                 <div class="project-card" style="animation: slideIn 0.6s ease-out 0.2s forwards; opacity: 0;">

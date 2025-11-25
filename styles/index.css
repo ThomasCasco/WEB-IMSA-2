@@ -56,59 +56,12 @@
 
         .section-fade::before {
             top: 0;
-            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%);
+            background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, transparent 100%);
         }
 
         .section-fade::after {
             bottom: 0;
-            background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 100%);
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card-animate {
-            animation: fadeInUp 0.6s ease-out forwards;
-            opacity: 0;
-        }
-
-        .card-animate:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-
-        .section-fade {
-            position: relative;
-        }
-
-        .section-fade::before,
-        .section-fade::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 150px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .section-fade::before {
-            top: 0;
-            background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, transparent 100%);
-        }
-
-        .section-fade::after {
-            bottom: 0;
-            background: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 100%);
+            background: linear-gradient(to top, rgb(255, 255, 255) 0%, transparent 100%);
         }
 
         @keyframes fadeInUp {
@@ -133,16 +86,16 @@
         }
 
         .vision-mission-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .vision-mission-card:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .vision-mission-card::before {

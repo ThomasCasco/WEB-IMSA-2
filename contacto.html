@@ -101,14 +101,14 @@
         }
 
         .custom-select option {
-            background: #1a1a1a;
-            color: #fff;
+            background: #fff;
+            color: #000;
         }
 
         .glass-morphism {
-            background: rgba(26, 26, 26, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         /* Removed gradient borders - using solid colors */
@@ -119,7 +119,7 @@
         }
 
         .solid-border-inner {
-            background: #1a1a1a;
+            background: #fff;
             border-radius: 18px;
         }
 
@@ -146,7 +146,7 @@
         .floating-label textarea:not(:placeholder-shown) + label {
             transform: translateY(-28px) scale(0.85);
             color: #e31837;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(255, 255, 255, 0.9);
             padding: 0 8px;
             border-radius: 4px;
         }
@@ -205,11 +205,11 @@
 
         /* Remove gradient backgrounds */
         .no-gradient-bg {
-            background: #000000;
+            background: #fff;
         }
 
         .no-gradient-bg-gray {
-            background: #111111;
+            background: #f3f4f6;
         }
 
         /* Solid color icons instead of gradients */
@@ -228,27 +228,27 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-black text-white font-sans">
-    <header class="fixed w-full fixed-header bg-black bg-opacity-90 backdrop-blur-md">
+<body class="bg-white text-gray-900 font-sans">
+    <header class="fixed w-full fixed-header bg-white bg-opacity-90 backdrop-blur-md shadow-sm">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="logo">
                     <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo"
-                        class="h-8 transition-transform duration-300 hover:scale-110">
+                        class="h-8 transition-transform duration-300 hover:scale-110 invert">
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Inicio</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Inicio</a>
                     <a href="productos.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Productos</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Productos</a>
                     <a href="servicios.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Servicios</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Servicios</a>
                     <a href="nosotros.html"
-                        class="text-sm font-medium text-white hover:text-primary transition duration-300">Nosotros</a>
+                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Nosotros</a>
                     <a href="contacto.html"
                         class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-red-700 transition duration-300">Contacto</a>
                 </div>
-                <button class="md:hidden text-white">
+                <button class="md:hidden text-gray-800">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -308,10 +308,10 @@
             <div class="absolute bottom-10 right-10 w-40 h-40 bg-red-500/10 rounded-full blur-xl animate-float" style="animation-delay: 2s;"></div>
             
             <div class="container mx-auto text-center relative z-10">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up text-white">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in-up text-gray-900">
                     Contáctanos
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.3s;">
+                <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.3s;">
                     Conecta con nosotros y descubre cómo podemos impulsar tu proyecto hacia el éxito
                 </p>
                 <div class="mt-8 animate-fade-in-up" style="animation-delay: 0.6s;">
@@ -332,17 +332,17 @@
                 <div class="flex justify-center items-start">
                     <!-- Contact Form - Centered and Redesigned -->
                     <div class="w-full max-w-2xl animate-slide-in-right">
-                        <div class="bg-black/70 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl">
+                        <div class="bg-white/90 backdrop-blur-xl border border-gray-200 rounded-3xl p-8 md:p-12 shadow-2xl">
                             <!-- Form header -->
                             <div class="text-center mb-10">
                                 <h2 class="text-4xl font-bold mb-4 text-primary">
                                     Envíanos tu consulta
                                 </h2>
-                                <p class="text-gray-400 text-lg">Completa los pasos y nos pondremos en contacto</p>
+                                <p class="text-gray-600 text-lg">Completa los pasos y nos pondremos en contacto</p>
                                 
                                 <!-- Progress bar -->
                                 <div class="mt-6">
-                                    <div class="w-full bg-gray-700 rounded-full h-2">
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
                                         <div id="progressBar" class="progress-bar h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
                                     </div>
                                     <p class="text-sm text-gray-400 mt-2">Progreso del formulario: <span id="progressText">0%</span></p>
@@ -352,7 +352,7 @@
                             <form id="contactForm" class="space-y-8">
                                 <!-- Step 1: Your Data -->
                                 <div class="form-step active" data-step="1">
-                                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
                                         <div class="flex items-center mb-4">
                                             <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3">
                                                 <span class="text-white font-bold text-sm">1</span>
@@ -360,37 +360,37 @@
                                             <h3 class="text-xl font-semibold text-primary">Tus Datos</h3>
                                         </div>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                            <label class="flex items-center space-x-4 cursor-pointer p-4 rounded-xl border-2 border-white/20 hover:border-primary transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 ripple-effect">
-                                                <input type="radio" id="empresa" name="tipoCliente" value="empresa" required class="w-5 h-5 text-primary bg-transparent border-white/30 focus:ring-primary focus:ring-2">
-                                                <span class="text-white font-semibold">Empresa</span>
+                                            <label class="flex items-center space-x-4 cursor-pointer p-4 rounded-xl border-2 border-gray-300 hover:border-primary transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 ripple-effect">
+                                                <input type="radio" id="empresa" name="tipoCliente" value="empresa" required class="w-5 h-5 text-primary bg-transparent border-gray-400 focus:ring-primary focus:ring-2">
+                                                <span class="text-gray-800 font-semibold">Empresa</span>
                                             </label>
-                                            <label class="flex items-center space-x-4 cursor-pointer p-4 rounded-xl border-2 border-white/20 hover:border-primary transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 ripple-effect">
-                                                <input type="radio" id="particular" name="tipoCliente" value="particular" required class="w-5 h-5 text-primary bg-transparent border-white/30 focus:ring-primary focus:ring-2">
-                                                <span class="text-white font-semibold">Particular</span>
+                                            <label class="flex items-center space-x-4 cursor-pointer p-4 rounded-xl border-2 border-gray-300 hover:border-primary transition-all duration-300 has-[:checked]:border-primary has-[:checked]:bg-primary/10 ripple-effect">
+                                                <input type="radio" id="particular" name="tipoCliente" value="particular" required class="w-5 h-5 text-primary bg-transparent border-gray-400 focus:ring-primary focus:ring-2">
+                                                <span class="text-gray-800 font-semibold">Particular</span>
                                             </label>
                                         </div>
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div class="floating-label">
-                                                <input type="text" id="nombre" name="nombre" required placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
-                                                <label for="nombre" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Nombre *</label>
+                                                <input type="text" id="nombre" name="nombre" required placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
+                                                <label for="nombre" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Nombre *</label>
                                             </div>
                                             <div class="floating-label">
-                                                <input type="text" id="apellido" name="apellido" required placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
-                                                <label for="apellido" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Apellido *</label>
+                                                <input type="text" id="apellido" name="apellido" required placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
+                                                <label for="apellido" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Apellido *</label>
                                             </div>
                                             <div class="floating-label">
-                                                <input type="email" id="email" name="email" required placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
-                                                <label for="email" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Email *</label>
+                                                <input type="email" id="email" name="email" required placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
+                                                <label for="email" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Email *</label>
                                             </div>
                                             <div class="floating-label">
-                                                <input type="tel" id="telefono" name="telefono" placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
-                                                <label for="telefono" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Teléfono</label>
+                                                <input type="tel" id="telefono" name="telefono" placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
+                                                <label for="telefono" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Teléfono</label>
                                             </div>
                                         </div>
                                         <div id="empresaFields" class="mt-6 hidden">
                                             <div class="floating-label">
-                                                <input type="text" id="razonSocial" name="razonSocial" placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
-                                                <label for="razonSocial" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Razón Social *</label>
+                                                <input type="text" id="razonSocial" name="razonSocial" placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 placeholder-transparent focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300">
+                                                <label for="razonSocial" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Razón Social *</label>
                                             </div>
                                         </div>
                                     </div>
@@ -398,7 +398,7 @@
 
                                 <!-- Step 2: Consultation Details -->
                                 <div class="form-step" data-step="2">
-                                    <div class="bg-white/5 p-6 rounded-2xl border border-white/10">
+                                    <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200">
                                         <div class="flex items-center mb-6">
                                             <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3">
                                                 <span class="text-white font-bold text-sm">2</span>
@@ -407,7 +407,7 @@
                                         </div>
                                         <div class="space-y-6">
                                             <div class="floating-label">
-                                                <select id="ubicacion" name="ubicacion" required class="custom-select w-full pl-4 pr-10 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 appearance-none">
+                                                <select id="ubicacion" name="ubicacion" required class="custom-select w-full pl-4 pr-10 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 appearance-none">
                                                     <option value="">Selecciona tu ubicación</option>
                                                     <option value="cordoba">Córdoba</option>
                                                     <option value="rosario">Rosario</option>
@@ -420,13 +420,13 @@
                                                 </select>
                                                 <label for="ubicacion">Ubicación *</label>
                                                 <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="floating-label">
-                                                <select id="areaInteres" name="areaInteres" required class="custom-select w-full pl-4 pr-10 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 appearance-none">
+                                                <select id="areaInteres" name="areaInteres" required class="custom-select w-full pl-4 pr-10 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 appearance-none">
                                                     <option value="">Selecciona el área de tu interés</option>
                                                     <option value="cables-energia">Cables de Energía</option>
                                                     <option value="cables-telecomunicaciones">Cables de Telecomunicaciones</option>
@@ -439,14 +439,14 @@
                                                 </select>
                                                 <label for="areaInteres">Área de Interés *</label>
                                                 <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
-                                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                                     </svg>
                                                 </div>
                                             </div>
                                             <div class="floating-label">
-                                                <textarea id="mensaje" name="mensaje" rows="5" required placeholder=" " class="w-full px-4 py-4 bg-white/5 border-2 border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 resize-none"></textarea>
-                                                <label for="mensaje" class="absolute left-4 top-4 text-gray-400 transition-all duration-300 pointer-events-none">Mensaje *</label>
+                                                <textarea id="mensaje" name="mensaje" rows="5" required placeholder=" " class="w-full px-4 py-4 bg-gray-50 border-2 border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 resize-none"></textarea>
+                                                <label for="mensaje" class="absolute left-4 top-4 text-gray-500 transition-all duration-300 pointer-events-none">Mensaje *</label>
                                             </div>
                                         </div>
                                     </div>
@@ -455,9 +455,9 @@
                                 <!-- Step 3: Submit -->
                                 <div class="form-step" data-step="3">
                                     <div class="space-y-6">
-                                        <div class="flex items-start space-x-4 p-6 bg-white/5 rounded-xl border border-white/10">
-                                            <input type="checkbox" id="politica" name="politica" required class="mt-1 w-5 h-5 text-primary bg-transparent border-white/30 rounded focus:ring-primary focus:ring-2">
-                                            <label for="politica" class="text-sm text-gray-300 leading-relaxed">
+                                        <div class="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl border border-gray-200">
+                                            <input type="checkbox" id="politica" name="politica" required class="mt-1 w-5 h-5 text-primary bg-transparent border-gray-400 rounded focus:ring-primary focus:ring-2">
+                                            <label for="politica" class="text-sm text-gray-600 leading-relaxed">
                                                 He leído y acepto la <a href="#" class="text-primary hover:text-red-400 underline transition-colors duration-300">Política de Privacidad</a> y los <a href="#" class="text-primary hover:text-red-400 underline transition-colors duration-300">Términos de Uso</a> *
                                             </label>
                                         </div>
@@ -481,7 +481,7 @@
 
                                 <!-- Form navigation -->
                                 <div class="flex justify-between items-center pt-6">
-                                    <button type="button" id="prevBtn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                    <button type="button" id="prevBtn" class="px-6 py-3 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                                         <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                                         </svg>
@@ -489,8 +489,8 @@
                                     </button>
                                     <div class="flex space-x-2">
                                         <div class="w-3 h-3 rounded-full bg-primary step-indicator active" data-step="1"></div>
-                                        <div class="w-3 h-3 rounded-full bg-gray-600 step-indicator" data-step="2"></div>
-                                        <div class="w-3 h-3 rounded-full bg-gray-600 step-indicator" data-step="3"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300 step-indicator" data-step="2"></div>
+                                        <div class="w-3 h-3 rounded-full bg-gray-300 step-indicator" data-step="3"></div>
                                     </div>
                                     <button type="button" id="nextBtn" class="px-6 py-3 bg-primary hover:bg-red-600 text-white font-medium rounded-xl transition-all duration-300">
                                         Siguiente

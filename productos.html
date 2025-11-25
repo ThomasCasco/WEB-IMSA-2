@@ -30,8 +30,8 @@
     <style>
         /* Base styles */
         body {
-            background-color: #0a0a0a;
-            color: white;
+            background-color: #fff;
+            color: #111;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
@@ -45,6 +45,7 @@
             height: 100%;
             z-index: -1;
             overflow: hidden;
+            background-color: #fff;
         }
 
         /* Particle animation */
@@ -157,10 +158,10 @@
 
         /* Header styles */
         .header {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(255, 255, 255, 0.9);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         /* Button styles */
@@ -185,7 +186,7 @@
 
         .btn-secondary {
             background-color: transparent;
-            color: white;
+            color: #111;
             padding: 0.75rem 1.5rem;
             border-radius: 0.375rem;
             font-weight: 600;
@@ -193,7 +194,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.2);
         }
 
         .btn-secondary:hover {
@@ -230,25 +231,25 @@
 
         .section-description {
             font-size: 1.125rem;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.7);
             max-width: 48rem;
             margin: 0 auto 3rem;
         }
 
         /* Card styles */
         .card {
-            background-color: rgba(26, 26, 26, 0.5);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 0.75rem;
             overflow: hidden;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             height: 100%;
         }
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(227, 24, 55, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 20px rgba(227, 24, 55, 0.1);
             border-color: rgba(227, 24, 55, 0.3);
         }
 
@@ -271,11 +272,11 @@
             font-size: 1.25rem;
             font-weight: 700;
             margin-bottom: 0.75rem;
-            color: white;
+            color: #111;
         }
 
         .card-description {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 0, 0, 0.7);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -491,8 +492,8 @@
             font-weight: 600;
             transition: all 0.3s ease;
             cursor: pointer;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #111;
         }
 
         .tab-button.active {
@@ -520,11 +521,11 @@
 
         /* Feature card styles */
         .feature-card {
-            background-color: rgba(26, 26, 26, 0.5);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 1rem;
             padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
         .feature-icon {
@@ -535,14 +536,14 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .benefit-card {
-            background-color: rgba(40, 40, 40, 0.5);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             height: 100%;
         }
 
@@ -617,14 +618,14 @@
 
         .scroll-text {
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(0, 0, 0, 0.6);
             margin-bottom: 0.5rem;
         }
 
         .scroll-icon {
             width: 2rem;
             height: 3rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(0, 0, 0, 0.3);
             border-radius: 1rem;
             display: flex;
             justify-content: center;
@@ -674,14 +675,14 @@
         }
 
         .modal-content {
-            background-color: rgba(26, 26, 26, 0.95);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 1rem;
             padding: 2rem;
             max-width: 90vw;
             max-height: 90vh;
             overflow-y: auto;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s ease;
             position: relative;
@@ -707,12 +708,12 @@
             align-items: flex-start;
             margin-bottom: 2rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .modal-close {
             background-color: transparent;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 0, 0, 0.7);
             border: none;
             padding: 0.5rem;
             border-radius: 0.5rem;
@@ -728,8 +729,8 @@
 
         .back-button {
             background-color: transparent;
-            color: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             cursor: pointer;
@@ -754,8 +755,8 @@
         }
 
         .subcategory-option {
-            background-color: rgba(40, 40, 40, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 0.75rem;
             padding: 1.5rem;
             cursor: pointer;
@@ -794,8 +795,8 @@
         }
 
         .product-item {
-            background-color: rgba(40, 40, 40, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 0.75rem;
             overflow: hidden;
             cursor: pointer;
@@ -821,12 +822,12 @@
         .product-item-title {
             font-size: 1.125rem;
             font-weight: 600;
-            color: white;
+            color: #111;
             margin-bottom: 0.5rem;
         }
 
         .product-item-description {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(0, 0, 0, 0.7);
             font-size: 0.875rem;
             line-height: 1.5;
         }
@@ -840,7 +841,7 @@
         }
 
         .product-detail-image img {
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .specs-grid {
@@ -853,18 +854,18 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem;
-            background-color: rgba(40, 40, 40, 0.3);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 0.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .spec-label {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(0, 0, 0, 0.8);
             font-weight: 500;
         }
 
         .spec-value {
-            color: white;
+            color: #111;
             font-weight: 600;
         }
 
@@ -885,18 +886,18 @@
         }
 
         .form-label {
-            color: white;
+            color: #111;
             font-weight: 500;
             margin-bottom: 0.5rem;
             font-size: 0.875rem;
         }
 
         .form-input {
-            background-color: rgba(40, 40, 40, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 0.5rem;
             padding: 0.75rem 1rem;
-            color: white;
+            color: #111;
             font-size: 0.875rem;
             transition: all 0.3s ease;
         }
@@ -1079,22 +1080,22 @@
     <!-- Content Wrapper -->
     <div class="content-wrapper">
         <!-- Header -->
-        <header class="fixed w-full z-10 bg-black bg-opacity-90 backdrop-blur-md">
+        <header class="fixed w-full z-10 bg-white bg-opacity-90 backdrop-blur-md shadow-sm">
             <nav class="container mx-auto px-6 py-4">
                 <div class="flex justify-between items-center">
                     <div class="logo">
                         <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo"
-                            class="h-8 transition-transform duration-300 hover:scale-110">
+                            class="h-8 transition-transform duration-300 hover:scale-110 invert">
                     </div>
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="index.html"
-                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Inicio</a>
+                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Inicio</a>
                         <a href="productos.html"
-                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Productos</a>
+                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Productos</a>
                         <a href="servicios.html"
-                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Servicios</a>
+                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Servicios</a>
                         <a href="nosotros.html"
-                            class="text-sm font-medium text-white hover:text-primary transition duration-300">Nosotros</a>
+                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Nosotros</a>
                         <a href="contacto.html"
                             class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition duration-300">Contacto</a>
                     </div>
