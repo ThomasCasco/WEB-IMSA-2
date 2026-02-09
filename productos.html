@@ -184,6 +184,12 @@
             box-shadow: 0 15px 20px -3px rgba(227, 24, 55, 0.4);
         }
 
+        .btn-primary:focus-visible,
+        .btn-secondary:focus-visible {
+            outline: 3px solid #e31837;
+            outline-offset: 2px;
+        }
+
         .btn-secondary {
             background-color: transparent;
             color: #111;
@@ -311,6 +317,12 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+
+        .product-card:focus-visible {
+            outline: 3px solid #e31837;
+            outline-offset: 2px;
         }
 
         .product-card:hover {
@@ -322,6 +334,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
             transition: transform 0.5s ease;
         }
 
@@ -521,10 +534,10 @@
 
         /* Feature card styles */
         .feature-card {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(240, 240, 245, 0.95);
             border-radius: 1rem;
             padding: 2rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
         }
 
@@ -540,10 +553,10 @@
         }
 
         .benefit-card {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(240, 240, 245, 0.95);
             border-radius: 0.75rem;
             padding: 1.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             height: 100%;
         }
 
@@ -686,6 +699,22 @@
             transform: scale(0.9) translateY(20px);
             transition: transform 0.3s ease;
             position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: #e31837 rgba(0, 0, 0, 0.05);
+        }
+
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .modal-content::-webkit-scrollbar-thumb {
+            background-color: #e31837;
+            border-radius: 4px;
         }
 
         .modal-overlay.active .modal-content {
@@ -727,6 +756,12 @@
             color: #e31837;
         }
 
+        .modal-close:focus-visible,
+        .back-button:focus-visible {
+            outline: 3px solid #e31837;
+            outline-offset: 2px;
+        }
+
         .back-button {
             background-color: transparent;
             color: rgba(0, 0, 0, 0.7);
@@ -755,8 +790,8 @@
         }
 
         .subcategory-option {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: rgba(240, 240, 245, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.12);
             border-radius: 0.75rem;
             padding: 1.5rem;
             cursor: pointer;
@@ -770,6 +805,12 @@
             border-color: #e31837;
             background-color: rgba(227, 24, 55, 0.1);
             transform: translateY(-2px);
+        }
+
+        .subcategory-option:focus-visible,
+        .product-item:focus-visible {
+            outline: 3px solid #e31837;
+            outline-offset: 2px;
         }
 
         .subcategory-icon {
@@ -795,8 +836,8 @@
         }
 
         .product-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+            background-color: rgba(240, 240, 245, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.12);
             border-radius: 0.75rem;
             overflow: hidden;
             cursor: pointer;
@@ -811,8 +852,10 @@
 
         .product-item-image {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 250px;
+            object-fit: contain;
+            background-color: #1a1a1a;
+            padding: 1rem;
         }
 
         .product-item-content {
@@ -842,6 +885,11 @@
 
         .product-detail-image img {
             border: 1px solid rgba(0, 0, 0, 0.1);
+            object-fit: contain;
+            background-color: #1a1a1a;
+            padding: 0.75rem;
+            max-height: 400px;
+            width: 100%;
         }
 
         .specs-grid {
@@ -854,9 +902,9 @@
             justify-content: space-between;
             align-items: center;
             padding: 0.75rem;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(240, 240, 245, 0.95);
             border-radius: 0.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .spec-label {
@@ -893,7 +941,7 @@
         }
 
         .form-input {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(245, 245, 250, 0.9);
             border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 0.5rem;
             padding: 0.75rem 1rem;
@@ -905,16 +953,18 @@
         .form-input:focus {
             outline: none;
             border-color: #e31837;
-            background-color: rgba(40, 40, 40, 0.8);
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #111;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.15);
         }
 
         .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(0, 0, 0, 0.5);
         }
 
         .form-input:read-only {
-            background-color: rgba(60, 60, 60, 0.5);
-            color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(230, 230, 235, 0.8);
+            color: #111;
         }
 
         .form-actions {
@@ -1099,7 +1149,7 @@
                         <a href="contacto.html"
                             class="text-sm font-medium bg-primary text-white px-4 py-2 rounded-full hover:bg-primary-dark transition duration-300">Contacto</a>
                     </div>
-                    <button class="md:hidden text-white">
+                    <button class="md:hidden text-gray-800" aria-label="Abrir menú de navegación">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1116,11 +1166,11 @@
                 <div class="container">
                     <div class="flex flex-col lg:flex-row items-center">
                         <div class="lg:w-1/2 mb-12 lg:mb-0">
-                            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white animate-fadeInUp">
+                            <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-gray-900 animate-fadeInUp">
                                 Innovación en cada <span class="text-primary">conexión</span>
                             </h1>
                             
-                            <p class="text-xl text-gray-300 mb-8 max-w-xl animate-fadeInUp animate-delay-100">
+                            <p class="text-xl text-gray-600 mb-8 max-w-xl animate-fadeInUp animate-delay-100">
                                 Descubre nuestra gama de productos de vanguardia, diseñados para impulsar el futuro de la industria eléctrica y energética.
                             </p>
                             
@@ -1165,16 +1215,16 @@
             <!-- Products Section -->
             <section id="productos" class="section">
                 <div class="container">
-                    <h2 class="section-title text-center text-white">Nuestras Líneas de Producto</h2>
+                    <h2 class="section-title text-center text-gray-900">Nuestras Líneas de Producto</h2>
                     <p class="section-description text-center">
                         Soluciones de alta calidad diseñadas para satisfacer las necesidades más exigentes de la industria moderna.
                     </p>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         <!-- Product 1 -->
-                        <div class="product-card" onclick="openSubcategoryModal('cables-electricos')">
+                        <div class="product-card" onclick="openSubcategoryModal('cables-electricos')" role="button" tabindex="0" aria-label="Explorar Cables Eléctricos" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSubcategoryModal('cables-electricos')}">
                             <div class="product-overlay"></div>
-                            <img src="img/Portada_Cables_v2_37x50.png" alt="Cable Eléctrico" class="product-image">
+                            <img src="img/products/png/Portada_Cables_v2_37x50.png" alt="Cable Eléctrico" class="product-image">
                             <div class="product-content">
                                 <h3 class="product-title">Cables Eléctricos</h3>
                                 <p class="product-description">
@@ -1190,9 +1240,9 @@
                         </div>
                         
                         <!-- Product 2 -->
-                        <div class="product-card" onclick="openSubcategoryModal('alambres-esmaltados')">
+                        <div class="product-card" onclick="openSubcategoryModal('alambres-esmaltados')" role="button" tabindex="0" aria-label="Explorar Alambres Esmaltados" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSubcategoryModal('alambres-esmaltados')}">
                             <div class="product-overlay"></div>
-                            <img src="img/Portada_Conductores_37x50.png" alt="Alambre Esmaltado" class="product-image">
+                            <img src="img/products/png/Portada_Conductores_37x50.png" alt="Alambre Esmaltado" class="product-image">
                             <div class="product-content">
                                 <h3 class="product-title">Alambres Esmaltados</h3>
                                 <p class="product-description">
@@ -1208,9 +1258,9 @@
                         </div>
                         
                         <!-- Product 3 -->
-                        <div class="product-card" onclick="openSubcategoryModal('cables-especiales')">
+                        <div class="product-card" onclick="openSubcategoryModal('cables-especiales')" role="button" tabindex="0" aria-label="Explorar Cables Especiales" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openSubcategoryModal('cables-especiales')}">
                             <div class="product-overlay"></div>
-                            <img src="img/Portadas_ImalumHE_v2.png" alt="Cable Especial" class="product-image">
+                            <img src="img/products/png/Portadas_ImalumHE_v2.png" alt="Cable Especial" class="product-image">
                             <div class="product-content">
                                 <h3 class="product-title">Cables Especiales</h3>
                                 <p class="product-description">
@@ -1231,7 +1281,7 @@
             <!-- Industries Section -->
             <section class="section">
                 <div class="container">
-                    <h2 class="section-title text-center text-white">Industrias que Impulsamos</h2>
+                    <h2 class="section-title text-center text-gray-900">Industrias que Impulsamos</h2>
                     <p class="section-description text-center">
                         Nuestras soluciones están presentes en los sectores más exigentes, impulsando el desarrollo y la innovación.
                     </p>
@@ -1384,12 +1434,14 @@
 
         <!-- Modals -->
         <!-- Subcategory Selection Modal -->
-        <div id="subcategory-modal" class="modal-overlay">
+        <div id="subcategory-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 id="modal-title" class="text-2xl font-bold text-white mb-2"></h3>
-                    <p class="text-gray-300 mb-6">Selecciona el tipo de aplicación para ver productos específicos</p>
-                    <button class="modal-close" onclick="closeModal('subcategory-modal')">
+                    <div>
+                        <h3 id="modal-title" class="text-2xl font-bold text-gray-900 mb-2"></h3>
+                        <p class="text-gray-600">Selecciona el tipo de aplicación para ver productos específicos</p>
+                    </div>
+                    <button class="modal-close" onclick="closeModal('subcategory-modal')" aria-label="Cerrar">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -1403,20 +1455,20 @@
         </div>
 
         <!-- Product Listing Modal -->
-        <div id="product-listing-modal" class="modal-overlay">
+        <div id="product-listing-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="listing-title">
             <div class="modal-content modal-large">
                 <div class="modal-header">
                     <div>
-                        <button class="back-button" onclick="goBackToSubcategory()">
+                        <button class="back-button" onclick="goBackToSubcategory()" aria-label="Volver a subcategorías">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                             Volver
                         </button>
-                        <h3 id="listing-title" class="text-2xl font-bold text-white mb-2"></h3>
-                        <p id="listing-description" class="text-gray-300"></p>
+                        <h3 id="listing-title" class="text-2xl font-bold text-gray-900 mb-2"></h3>
+                        <p id="listing-description" class="text-gray-600"></p>
                     </div>
-                    <button class="modal-close" onclick="closeAllModals()">
+                    <button class="modal-close" onclick="closeAllModals()" aria-label="Cerrar">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -1430,19 +1482,19 @@
         </div>
 
         <!-- Product Detail Modal -->
-        <div id="product-detail-modal" class="modal-overlay">
+        <div id="product-detail-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title">
             <div class="modal-content modal-large">
                 <div class="modal-header">
                     <div>
-                        <button class="back-button" onclick="goBackToListing()">
+                        <button class="back-button" onclick="goBackToListing()" aria-label="Volver al listado">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                             Volver al listado
                         </button>
-                        <h3 id="detail-title" class="text-2xl font-bold text-white mb-2"></h3>
+                        <h3 id="detail-title" class="text-2xl font-bold text-gray-900 mb-2"></h3>
                     </div>
-                    <button class="modal-close" onclick="closeAllModals()">
+                    <button class="modal-close" onclick="closeAllModals()" aria-label="Cerrar">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -1451,12 +1503,12 @@
                 
                 <div class="product-detail-content">
                     <div class="product-detail-image">
-                        <img id="detail-image" src="" alt="" class="w-full h-64 object-cover rounded-lg">
+                        <img id="detail-image" src="" alt="" class="w-full rounded-lg" style="max-height: 400px; object-fit: contain; background-color: #1a1a1a; padding: 0.75rem;">
                     </div>
                     
                     <div class="product-detail-info">
                         <div class="product-specs">
-                            <h4 class="text-lg font-semibold text-white mb-4">Especificaciones Técnicas</h4>
+                            <h4 class="text-lg font-semibold text-gray-900 mb-4">Especificaciones Técnicas</h4>
                             <div id="detail-specs" class="specs-grid">
                                 <!-- Specs will be dynamically loaded -->
                             </div>
@@ -1483,14 +1535,14 @@
         </div>
 
         <!-- Contact Form Modal -->
-        <div id="contact-form-modal" class="modal-overlay">
+        <div id="contact-form-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="contact-form-title">
             <div class="modal-content">
                 <div class="modal-header">
                     <div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Solicitar Información</h3>
-                        <p class="text-gray-300">Completa el formulario y nos pondremos en contacto contigo</p>
+                        <h3 id="contact-form-title" class="text-2xl font-bold text-gray-900 mb-2">Solicitar Información</h3>
+                        <p class="text-gray-600">Completa el formulario y nos pondremos en contacto contigo</p>
                     </div>
-                    <button class="modal-close" onclick="closeModal('contact-form-modal')">
+                    <button class="modal-close" onclick="closeModal('contact-form-modal')" aria-label="Cerrar">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -1539,7 +1591,7 @@
         </div>
 
         <!-- Success Modal -->
-        <div id="success-modal" class="modal-overlay">
+        <div id="success-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="Solicitud enviada exitosamente">
             <div class="modal-content modal-small">
                 <div class="text-center">
                     <div class="success-icon mb-4">
@@ -1547,8 +1599,8 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2">¡Solicitud Enviada!</h3>
-                    <p class="text-gray-300 mb-6">Hemos recibido tu consulta. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">¡Solicitud Enviada!</h3>
+                    <p class="text-gray-600 mb-6">Hemos recibido tu consulta. Nos pondremos en contacto contigo en las próximas 24 horas.</p>
                     <button class="btn-primary w-full" onclick="closeAllModals()">
                         Continuar
                     </button>
@@ -1638,7 +1690,7 @@
                             {
                                 id: 'plastix-cf',
                                 name: 'Plastix CF',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/1_PlastixCF.png',
                                 description: 'Cable flexible de cobre con aislamiento PVC para instalaciones domiciliarias',
                                 specs: {
                                     'Tipo': 'Cable flexible',
@@ -1652,7 +1704,7 @@
                             {
                                 id: 'plastix-ch',
                                 name: 'Plastix CH',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/1_PlastixCH.png',
                                 description: 'Cable rígido de cobre con aislamiento PVC para instalaciones fijas',
                                 specs: {
                                     'Tipo': 'Cable rígido',
@@ -1666,7 +1718,7 @@
                             {
                                 id: 'plastix-hf',
                                 name: 'Plastix HF',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/1_PlastixHF_v3.png',
                                 description: 'Cable libre de halógenos para ambientes con requerimientos especiales',
                                 specs: {
                                     'Tipo': 'Libre de halógenos',
@@ -1680,7 +1732,7 @@
                             {
                                 id: 'plastix-r',
                                 name: 'Plastix R',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/1_PlastixR.png',
                                 description: 'Cable resistente para instalaciones domiciliarias de alta durabilidad',
                                 specs: {
                                     'Tipo': 'Alta resistencia',
@@ -1694,7 +1746,7 @@
                             {
                                 id: 'plastix-x',
                                 name: 'Plastix X',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/1_PlastixX.png',
                                 description: 'Cable de alta performance para aplicaciones domiciliarias exigentes',
                                 specs: {
                                     'Tipo': 'Alta performance',
@@ -1714,7 +1766,7 @@
                             {
                                 id: 'payton-hf-1kv-superflex',
                                 name: 'Payton HF 1 kV Superflex',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonHFSuperflex.png',
                                 description: 'Cable superflexible libre de halógenos para aplicaciones industriales móviles',
                                 specs: {
                                     'Voltaje': '1 kV',
@@ -1729,7 +1781,7 @@
                             {
                                 id: 'payton-xlpe-13-2kv-cat1-uni',
                                 name: 'Payton XLPE 13,2 kV Cat I Unipolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT13.png',
                                 description: 'Cable unipolar de media tensión con aislamiento XLPE para redes de distribución',
                                 specs: {
                                     'Voltaje': '13,2 kV',
@@ -1744,7 +1796,7 @@
                             {
                                 id: 'payton-xlpe-13-2kv-cat2-tri',
                                 name: 'Payton XLPE 13,2 kV Cat II Tripolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT13.png',
                                 description: 'Cable tripolar de media tensión con pantalla metálica para instalaciones subterráneas',
                                 specs: {
                                     'Voltaje': '13,2 kV',
@@ -1759,7 +1811,7 @@
                             {
                                 id: 'payton-xlpe-13-2kv-cat2-uni',
                                 name: 'Payton XLPE 13,2 kV Cat II Unipolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT13.png',
                                 description: 'Cable unipolar de media tensión con pantalla metálica para redes urbanas',
                                 specs: {
                                     'Voltaje': '13,2 kV',
@@ -1774,7 +1826,7 @@
                             {
                                 id: 'payton-xlpe-33kv-cat1-tri',
                                 name: 'Payton XLPE 33 kV Cat I Tripolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT33.png',
                                 description: 'Cable tripolar de alta tensión para transmisión de energía en redes principales',
                                 specs: {
                                     'Voltaje': '33 kV',
@@ -1789,7 +1841,7 @@
                             {
                                 id: 'payton-xlpe-33kv-cat1-uni',
                                 name: 'Payton XLPE 33 kV Cat I Unipolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT33.png',
                                 description: 'Cable unipolar de alta tensión para sistemas de transmisión industrial',
                                 specs: {
                                     'Voltaje': '33 kV',
@@ -1804,7 +1856,7 @@
                             {
                                 id: 'payton-xlpe-66kv-uni',
                                 name: 'Payton XLPE 66 kV Unipolares',
-                                image: 'img/Portada_Cables_v2_37x50.png',
+                                image: 'img/products/png/3_PaytonXLPE_MT66.png',
                                 description: 'Cable unipolar de muy alta tensión para grandes sistemas de transmisión',
                                 specs: {
                                     'Voltaje': '66 kV',
@@ -1830,7 +1882,7 @@
                             {
                                 id: 'payton-soltix',
                                 name: 'Payton Soltix',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/0_PaytonSolar_v2.png',
                                 description: 'Cable solar especialmente diseñado para instalaciones fotovoltaicas',
                                 specs: {
                                     'Aplicación': 'Sistemas fotovoltaicos',
@@ -1845,7 +1897,7 @@
                             {
                                 id: 'payton-torsionable',
                                 name: 'Payton Torsionable',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/3_PaytonTorsionable.png',
                                 description: 'Cable especial para aplicaciones con movimientos de torsión en sistemas renovables',
                                 specs: {
                                     'Aplicación': 'Sistemas con movimiento',
@@ -1866,7 +1918,7 @@
                             {
                                 id: 'payton-tpu-shd-g-gc',
                                 name: 'Payton TPU (SHD-G-GC Type)',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/PaytonTPU_SHD-GC.png',
                                 description: 'Cable con cubierta TPU para equipos móviles en minería subterránea',
                                 specs: {
                                     'Aplicación': 'Minería subterránea',
@@ -1881,7 +1933,7 @@
                             {
                                 id: 'payton-tpu-diesel-locomotive',
                                 name: 'Payton TPU Diesel Locomotive',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/PaytonTPU_Diesel.png',
                                 description: 'Cable especializado para locomotoras diesel en aplicaciones mineras',
                                 specs: {
                                     'Aplicación': 'Locomotoras diesel mineras',
@@ -1896,7 +1948,7 @@
                             {
                                 id: 'payton-tpu-superflex-minero',
                                 name: 'Payton TPU Superflex (Minería)',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/PaytonTPU.png',
                                 description: 'Cable superflexible con cubierta TPU para equipos móviles mineros',
                                 specs: {
                                     'Aplicación': 'Equipos móviles mineros',
@@ -1911,7 +1963,7 @@
                             {
                                 id: 'payton-xlpe-self-supporting',
                                 name: 'Payton XLPE Self Supporting',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/3_PaytonXLPESuperflex_v2.png',
                                 description: 'Cable autoportante XLPE para instalaciones mineras aéreas',
                                 specs: {
                                     'Aplicación': 'Instalaciones aéreas mineras',
@@ -1932,7 +1984,7 @@
                             {
                                 id: 'flexidur-fl',
                                 name: 'Flexidur FL',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/6_Flexidur.png',
                                 description: 'Cable flexible para ambientes con hidrocarburos y químicos agresivos',
                                 specs: {
                                     'Aplicación': 'Ambientes con hidrocarburos',
@@ -1947,7 +1999,7 @@
                             {
                                 id: 'payton-hf-1kv-superflex-petroleo',
                                 name: 'Payton HF 1 kV Superflex (Petróleo)',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/3_PaytonHFSuperflex.png',
                                 description: 'Cable superflexible libre de halógenos para equipos petrolíferos',
                                 specs: {
                                     'Voltaje': '1 kV',
@@ -1962,7 +2014,7 @@
                             {
                                 id: 'payton-tpu-superflex-petroleo',
                                 name: 'Payton TPU Superflex (Petróleo)',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/PaytonTPU.png',
                                 description: 'Cable con cubierta TPU para aplicaciones petrolíferas extremas',
                                 specs: {
                                     'Aplicación': 'Industria petrolífera',
@@ -1983,7 +2035,7 @@
                             {
                                 id: 'comander-cf',
                                 name: 'Comander CF',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/3_ComanderCF.png',
                                 description: 'Cable de control flexible para sistemas de automatización',
                                 specs: {
                                     'Aplicación': 'Sistemas de control',
@@ -1998,7 +2050,7 @@
                             {
                                 id: 'comander-in',
                                 name: 'Comander IN',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/1_ComanderIN.png',
                                 description: 'Cable de instrumentación para señales analógicas y digitales',
                                 specs: {
                                     'Aplicación': 'Instrumentación industrial',
@@ -2013,7 +2065,7 @@
                             {
                                 id: 'comander-r',
                                 name: 'Comander R',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/1_ComanderR.png',
                                 description: 'Cable de comando resistente para ambientes industriales severos',
                                 specs: {
                                     'Aplicación': 'Comando industrial',
@@ -2034,7 +2086,7 @@
                             {
                                 id: 'ccdd',
                                 name: 'CCDD',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_CCDD.png',
                                 description: 'Conductor concéntrico desnudo para distribución aérea',
                                 specs: {
                                     'Aplicación': 'Distribución aérea',
@@ -2049,7 +2101,7 @@
                             {
                                 id: 'conductores-accc',
                                 name: 'Conductores ACCC',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/2_Conductores1.png',
                                 description: 'Conductor de aluminio con núcleo compuesto de carbono para alta eficiencia',
                                 specs: {
                                     'Tipo': 'ACCC (Aluminum Conductor Composite Core)',
@@ -2064,7 +2116,7 @@
                             {
                                 id: 'etix-acometida-concentrico',
                                 name: 'Etix Acometida Concéntrico',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_EtixAcometidaConcentrico.png',
                                 description: 'Cable concéntrico para acometidas domiciliarias aéreas',
                                 specs: {
                                     'Aplicación': 'Acometidas domiciliarias',
@@ -2079,7 +2131,7 @@
                             {
                                 id: 'etix-acometida',
                                 name: 'Etix Acometida',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_EtixAcometida.png',
                                 description: 'Cable para acometidas residenciales y comerciales',
                                 specs: {
                                     'Aplicación': 'Acometidas residenciales',
@@ -2094,7 +2146,7 @@
                             {
                                 id: 'etix-distribucion',
                                 name: 'Etix Distribución',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_EtixDistribucion.png',
                                 description: 'Cable para redes de distribución eléctrica urbana',
                                 specs: {
                                     'Aplicación': 'Redes de distribución',
@@ -2109,7 +2161,7 @@
                             {
                                 id: 'etix-mt',
                                 name: 'Etix MT',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_ElixMT_v2.png',
                                 description: 'Cable de media tensión para redes de distribución primaria',
                                 specs: {
                                     'Aplicación': 'Media tensión',
@@ -2124,7 +2176,7 @@
                             {
                                 id: 'imalal-xlpe',
                                 name: 'Imalal XLPE',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_ImalalXLPE.png',
                                 description: 'Conductor de aluminio con aislamiento XLPE para líneas aéreas',
                                 specs: {
                                     'Material': 'Aluminio',
@@ -2139,7 +2191,7 @@
                             {
                                 id: 'imalal',
                                 name: 'Imalal',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_Imalal.png',
                                 description: 'Conductor desnudo de aluminio para líneas de transmisión',
                                 specs: {
                                     'Material': 'Aluminio puro',
@@ -2154,7 +2206,7 @@
                             {
                                 id: 'imalum',
                                 name: 'Imalum',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_Imalum.png',
                                 description: 'Conductor ACSR (Aluminum Conductor Steel Reinforced) para líneas aéreas',
                                 specs: {
                                     'Tipo': 'ACSR',
@@ -2169,7 +2221,7 @@
                             {
                                 id: 'imalum-astm-b232',
                                 name: 'Imalum ASTM B232',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_ImalumHE_v3.png',
                                 description: 'Conductor ACSR según norma ASTM B232 para aplicaciones internacionales',
                                 specs: {
                                     'Tipo': 'ACSR',
@@ -2184,7 +2236,7 @@
                             {
                                 id: 'procompact',
                                 name: 'Procompact',
-                                image: 'img/Portadas_ImalumHE_v2.png',
+                                image: 'img/products/png/4_Procompact_v2.png',
                                 description: 'Conductor compacto para líneas de transmisión de alta eficiencia',
                                 specs: {
                                     'Tipo': 'Conductor compacto',
@@ -2336,15 +2388,21 @@
                         'linea-aerea': '⚡'
                     };
                     
+                    subcategoryDiv.setAttribute('role', 'button');
+                    subcategoryDiv.setAttribute('tabindex', '0');
+                    subcategoryDiv.setAttribute('aria-label', subcategory.title.split(' - ')[0] + ': ' + subcategory.description);
+                    subcategoryDiv.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); subcategoryDiv.click(); }
+                    });
                     subcategoryDiv.innerHTML = `
                         <div class="subcategory-icon">
                             ${icons[key] || '📦'}
                         </div>
                         <div class="subcategory-content">
-                            <h4 class="text-xl font-semibold text-white mb-2">${subcategory.title.split(' - ')[0]}</h4>
-                            <p class="text-gray-300">${subcategory.description}</p>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-2">${subcategory.title.split(' - ')[0]}</h4>
+                            <p class="text-gray-600">${subcategory.description}</p>
                         </div>
-                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
                     `;
@@ -2384,10 +2442,16 @@
         function createProductElement(product) {
             const productDiv = document.createElement('div');
             productDiv.className = 'product-item';
+            productDiv.setAttribute('role', 'button');
+            productDiv.setAttribute('tabindex', '0');
+            productDiv.setAttribute('aria-label', product.name + ': ' + product.description);
             productDiv.onclick = () => showProductDetail(product);
+            productDiv.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showProductDetail(product); }
+            });
             
             productDiv.innerHTML = `
-                <img src="${product.image}" alt="${product.name}" class="product-item-image">
+                <img src="${product.image}" alt="${product.name}" class="product-item-image" loading="lazy">
                 <div class="product-item-content">
                     <h4 class="product-item-title">${product.name}</h4>
                     <p class="product-item-description">${product.description}</p>
@@ -2402,8 +2466,9 @@
             
             // Update modal content
             document.getElementById('detail-title').textContent = product.name;
-            document.getElementById('detail-image').src = product.image;
-            document.getElementById('detail-image').alt = product.name;
+            const detailImage = document.getElementById('detail-image');
+            detailImage.src = product.image;
+            detailImage.alt = product.name;
             
             // Generate specs
             const specsGrid = document.getElementById('detail-specs');
@@ -2487,10 +2552,43 @@
             openModal('product-listing-modal');
         }
 
-        // Keyboard navigation
+        // Keyboard navigation & focus management
+        let lastFocusedElement = null;
+
+        const origOpenModal = openModal;
+        openModal = function(modalId) {
+            lastFocusedElement = document.activeElement;
+            origOpenModal(modalId);
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusable) setTimeout(() => focusable.focus(), 100);
+            }
+        };
+
+        const origCloseAllModals = closeAllModals;
+        closeAllModals = function() {
+            origCloseAllModals();
+            if (lastFocusedElement) { lastFocusedElement.focus(); lastFocusedElement = null; }
+        };
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeAllModals();
+            }
+            // Trap focus inside active modal
+            if (e.key === 'Tab') {
+                const activeModal = document.querySelector('.modal-overlay.active');
+                if (!activeModal) return;
+                const focusables = activeModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                if (focusables.length === 0) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault(); last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault(); first.focus();
+                }
             }
         });
     </script>
