@@ -892,29 +892,103 @@
             width: 100%;
         }
 
+        /* ── Specs table pro ── */
+        .specs-wrapper {
+            position: relative;
+            max-height: 340px;
+            overflow-y: auto;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0,0,0,0.07);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(227,24,55,0.35) transparent;
+        }
+        .specs-wrapper::-webkit-scrollbar { width: 5px; }
+        .specs-wrapper::-webkit-scrollbar-track { background: transparent; }
+        .specs-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(227,24,55,0.35);
+            border-radius: 10px;
+        }
+        .specs-wrapper::after {
+            content: '';
+            position: sticky;
+            bottom: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 32px;
+            background: linear-gradient(to top, rgba(255,255,255,0.95), transparent);
+            pointer-events: none;
+        }
+        .specs-wrapper.scrolled-bottom::after { opacity: 0; }
+
         .specs-grid {
-            display: grid;
-            gap: 0.75rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .spec-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem;
-            background-color: rgba(240, 240, 245, 0.95);
-            border-radius: 0.5rem;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            align-items: baseline;
+            gap: 1rem;
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            /* entrada animada */
+            opacity: 0;
+            transform: translateX(-8px);
+            animation: specSlideIn 0.35s ease forwards;
+        }
+        .spec-item:last-child { border-bottom: none; }
+        .spec-item:nth-child(even) {
+            background-color: rgba(240, 240, 245, 0.55);
+        }
+        .spec-item:hover {
+            background-color: rgba(227, 24, 55, 0.04);
+        }
+
+        @keyframes specSlideIn {
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .spec-label {
-            color: rgba(0, 0, 0, 0.8);
+            flex: 0 0 40%;
+            color: rgba(0,0,0,0.5);
             font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            line-height: 1.4;
+            position: relative;
+            padding-left: 0.65rem;
+        }
+        .spec-label::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.15em;
+            width: 3px;
+            height: 100%;
+            background: #e31837;
+            border-radius: 3px;
         }
 
         .spec-value {
+            flex: 1 1 60%;
             color: #111;
             font-weight: 600;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 480px) {
+            .spec-item {
+                flex-direction: column;
+                gap: 0.15rem;
+            }
+            .spec-label { flex: none; }
+            .spec-value { flex: none; padding-left: 0.65rem; }
         }
 
         .product-actions {
@@ -1509,8 +1583,10 @@
                     <div class="product-detail-info">
                         <div class="product-specs">
                             <h4 class="text-lg font-semibold text-gray-900 mb-4">Especificaciones Técnicas</h4>
-                            <div id="detail-specs" class="specs-grid">
-                                <!-- Specs will be dynamically loaded -->
+                            <div class="specs-wrapper" id="specs-wrapper">
+                                <div id="detail-specs" class="specs-grid">
+                                    <!-- Specs will be dynamically loaded -->
+                                </div>
                             </div>
                         </div>
                         
@@ -2716,15 +2792,30 @@
             const specsGrid = document.getElementById('detail-specs');
             specsGrid.innerHTML = '';
             
-            Object.entries(product.specs).forEach(([label, value]) => {
+            Object.entries(product.specs).forEach(([label, value], i) => {
                 const specDiv = document.createElement('div');
                 specDiv.className = 'spec-item';
+                specDiv.style.animationDelay = `${i * 0.06}s`;
                 specDiv.innerHTML = `
                     <span class="spec-label">${label}</span>
                     <span class="spec-value">${value}</span>
                 `;
                 specsGrid.appendChild(specDiv);
             });
+
+            // Scroll-fade indicator
+            const sw = document.getElementById('specs-wrapper');
+            if (sw) {
+                sw.scrollTop = 0;
+                sw.classList.remove('scrolled-bottom');
+                sw.onscroll = () => {
+                    if (sw.scrollTop + sw.clientHeight >= sw.scrollHeight - 4) {
+                        sw.classList.add('scrolled-bottom');
+                    } else {
+                        sw.classList.remove('scrolled-bottom');
+                    }
+                };
+            }
             
             // Close listing modal and open detail modal
             closeModal('product-listing-modal');
