@@ -37,8 +37,18 @@
                         class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Inicio</a>
                     <a href="productos.html"
                         class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Productos</a>
-                    <a href="imsa-plus.html"
-                        class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">IMSA +</a>
+                    <div class="relative group">
+                        <a href="imsa-plus.html"
+                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300 inline-flex items-center gap-1">IMSA +
+                            <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </a>
+                        <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="py-2">
+                                <a href="prolongadores.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition duration-200">Prolongadores</a>
+                                <a href="cintas.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition duration-200">Cintas</a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="nosotros.html"
                         class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Nosotros</a>
                     <a href="contacto.html"
@@ -55,36 +65,105 @@
         </nav>
     </header>
 
-    <main class="pt-20">
-        <section class="bg-gradient-to-r from-gray-100 to-white py-20 px-6">
+    <main class="pt-24">
+        <!-- Ficha de Producto -->
+        <section class="py-12 px-6">
             <div class="container mx-auto">
-                <span class="text-sm uppercase tracking-widest text-gray-500">IMSA +</span>
-                <h1 class="text-4xl md:text-5xl font-bold mt-2 mb-4">Prolongadores</h1>
-                <p class="text-lg text-gray-600 max-w-3xl">Soluciones confiables para extensiones electricas con alto nivel de seguridad, durabilidad y performance en campo.</p>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Columna Izquierda: Imagen del producto -->
+                    <div class="lg:w-1/2">
+                        <div class="relative bg-gray-50 rounded-2xl overflow-hidden flex items-center justify-center p-8 min-h-[400px]" id="product-gallery">
+                            <button onclick="changeImage(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow flex items-center justify-center text-primary transition z-10">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <img id="main-product-img" src="./img/products/png/6_Bondflex.png" alt="Prolongador IMSA+" class="max-h-[380px] object-contain transition-opacity duration-300">
+                            <button onclick="changeImage(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full shadow flex items-center justify-center text-primary transition z-10">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                        <!-- Thumbnails -->
+                        <div class="flex gap-3 mt-4 justify-center" id="thumb-container">
+                            <button onclick="setImage(0)" class="product-thumb active w-16 h-16 rounded-lg border-2 border-gray-200 overflow-hidden bg-gray-50 p-1 hover:border-primary transition">
+                                <img src="./img/products/png/6_Bondflex.png" alt="Vista 1" class="w-full h-full object-contain">
+                            </button>
+                            <button onclick="setImage(1)" class="product-thumb w-16 h-16 rounded-lg border-2 border-gray-200 overflow-hidden bg-gray-50 p-1 hover:border-primary transition">
+                                <img src="./img/products/png/6_Bondflex_Domflex.png" alt="Vista 2" class="w-full h-full object-contain">
+                            </button>
+                            <button onclick="setImage(2)" class="product-thumb w-16 h-16 rounded-lg border-2 border-gray-200 overflow-hidden bg-gray-50 p-1 hover:border-primary transition">
+                                <img src="./img/products/png/6_Flexidur.png" alt="Vista 3" class="w-full h-full object-contain">
+                            </button>
+                            <button onclick="setImage(3)" class="product-thumb w-16 h-16 rounded-lg border-2 border-gray-200 overflow-hidden bg-gray-50 p-1 hover:border-primary transition">
+                                <img src="./img/products/png/6_Acorflex.png" alt="Vista 4" class="w-full h-full object-contain">
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Info del producto -->
+                    <div class="lg:w-1/2">
+                        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Prolongadores IMSA+</h1>
+                        <p class="text-lg font-semibold text-gray-700 mb-6 italic">Extensión segura. Rendimiento sin límites.</p>
+
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            Los prolongadores IMSA+ están diseñados para ofrecer máxima seguridad y durabilidad en extensiones eléctricas. Fabricados con materiales de primera calidad que garantizan aislación robusta y terminaciones seguras, son ideales para uso doméstico, profesional e industrial en los ambientes más exigentes.
+                        </p>
+
+                        <!-- Badges de características -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/ignif-auto-ext.png" alt="Ignífuga" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Aislación robusta y segura</span>
+                            </div>
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/alt-elast.png" alt="Alta resistencia" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Alta capacidad de corriente</span>
+                            </div>
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/cumpl-normat.png" alt="Normas IRAM" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Certificado bajo normas IRAM</span>
+                            </div>
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/inh-corr-cond.png" alt="Retardante" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Retardante de llama</span>
+                            </div>
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/exc-poder-adh.png" alt="Resistencia" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Alta resistencia mecánica</span>
+                            </div>
+                            <div class="flex items-center gap-3 border border-gray-200 rounded-xl px-4 py-3">
+                                <img src="./img/logos/libre-plom.png" alt="Libre de plomo" class="w-12 h-12 object-contain flex-shrink-0">
+                                <span class="text-sm font-medium text-gray-700">Uso doméstico e industrial</span>
+                            </div>
+                        </div>
+
+                        <!-- Características Técnicas -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-bold text-gray-900 mb-3">Características técnicas</h3>
+                            <ul class="space-y-1.5 text-gray-600 text-sm">
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Material: PVC de alta resistencia</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Tensión nominal: 250 V</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Corriente máxima: 10 A</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Conductor: cobre electrolítico</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Sección del conductor: 3 x 1 mm²</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Longitudes disponibles: 3 m / 5 m / 10 m</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Propiedad: retardante de llama</li>
+                                <li class="flex items-start gap-2"><span class="text-primary mt-0.5">•</span> Tipo de enchufe: 3 patas con tierra</li>
+                            </ul>
+                        </div>
+
+                        <!-- Certificación -->
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                            <p class="text-sm text-gray-600"><span class="font-semibold text-gray-800">Certificación:</span> Certificado bajo normas de seguridad eléctrica IRAM 2063</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section class="py-16 px-6">
-            <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Uso intensivo</h3>
-                    <p class="text-gray-600">Pensados para ambientes exigentes y operaciones continuas.</p>
-                </div>
-                <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Seguridad garantizada</h3>
-                    <p class="text-gray-600">Materiales con aislacion robusta y terminaciones seguras.</p>
-                </div>
-                <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-3">Variedad de formatos</h3>
-                    <p class="text-gray-600">Diferentes largos y configuraciones para cada necesidad.</p>
-                </div>
-            </div>
-        </section>
-
+        <!-- CTA -->
         <section class="bg-black text-white py-16 px-6">
             <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
-                    <h2 class="text-3xl font-bold mb-2">Necesitas asesoramiento?</h2>
+                    <h2 class="text-3xl font-bold mb-2">¿Necesitás asesoramiento?</h2>
                     <p class="text-gray-300">Nuestro equipo te ayuda a definir el prolongador ideal para tu proyecto.</p>
                 </div>
                 <a href="contacto.html"
@@ -92,5 +171,38 @@
             </div>
         </section>
     </main>
+
+    <script>
+        const images = [
+            './img/products/png/6_Bondflex.png',
+            './img/products/png/6_Bondflex_Domflex.png',
+            './img/products/png/6_Flexidur.png',
+            './img/products/png/6_Acorflex.png'
+        ];
+        let currentImg = 0;
+        const mainImg = document.getElementById('main-product-img');
+        const thumbs = document.querySelectorAll('.product-thumb');
+
+        function setImage(index) {
+            currentImg = index;
+            mainImg.style.opacity = '0';
+            setTimeout(() => {
+                mainImg.src = images[currentImg];
+                mainImg.style.opacity = '1';
+            }, 150);
+            thumbs.forEach((t, i) => {
+                t.classList.toggle('active', i === currentImg);
+                t.classList.toggle('border-primary', i === currentImg);
+                t.classList.toggle('border-gray-200', i !== currentImg);
+            });
+        }
+
+        function changeImage(dir) {
+            let newIndex = currentImg + dir;
+            if (newIndex < 0) newIndex = images.length - 1;
+            if (newIndex >= images.length) newIndex = 0;
+            setImage(newIndex);
+        }
+    </script>
 </body>
 </html>

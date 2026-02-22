@@ -1,3 +1,26 @@
+        /* Nav Dropdown - IMSA+ hover menu */
+        .nav-dropdown {
+            transform: translateY(-5px);
+        }
+
+        .group:hover .nav-dropdown {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .nav-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 0;
+            right: 0;
+            height: 8px;
+        }
+
+        /* Product page - thumbnail active state */
+        .product-thumb.active {
+            border-color: #e31837 !important;
+        }
+
         @keyframes float {
             0% {
                 transform: translateY(0px);
