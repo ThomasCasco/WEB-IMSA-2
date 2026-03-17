@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta SEO -->
+    <title>{{ title }} - IMSA Productos</title>
+    <meta name="description" content="{{ description }}">
+    <meta property="og:title" content="{{ title }} - IMSA">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ img }}">
+
+    <link rel="icon" type="image/x-icon" href="./img/icono.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e31837',
+                        primaryDark: '#b31229',
+                        secondary: '#1a1a1a',
+                        dark: '#121212',
+                        darker: '#0a0a0a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: #111; overflow-x: hidden; }
+        
+        /* Navbar Scrolled State */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Product Gallery */
+        .product-image-container {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #f8f9fa;
+            border: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 4/3;
+        }
+        
+        .product-image-container img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+
+        .product-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Tabs */
+        .tab-btn {
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            border-bottom-color: #e31837;
+            color: #e31837;
+            font-weight: 600;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease forwards; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Feature Badge */
+        .feature-badge {
+            background: rgba(227, 24, 55, 0.1);
+            color: #e31837;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 glass-nav">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo" class="h-10 invert transition-transform duration-300 hover:scale-110">
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Inicio</a>
+                    <a href="nosotros.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Nosotros</a>
+                    <a href="productos.html" class="text-primary font-semibold">Productos</a>
+                    <a href="servicios.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Servicios</a>
+                    <a href="imsa-plus.html" class="text-gray-800 hover:text-primary transition-colors font-medium">IMSA+</a>
+                    <a href="contacto.html" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primaryDark transition-all shadow-md hover:shadow-lg font-medium">Contacto</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-28 pb-20">
+        <div class="container mx-auto px-6">
+            
+            <!-- Breadcrumbs -->
+            <div class="flex items-center gap-2 text-sm text-gray-500 mb-8">
+                <a href="index.html" class="hover:text-primary transition-colors">Inicio</a>
+                <span>/</span>
+                <a href="productos.html" class="hover:text-primary transition-colors">Productos</a>
+                <span>/</span>
+                <span class="text-gray-900 font-medium">{{ title }}</span>
+            </div>
+
+            <!-- Product Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 item-start">
+                
+                <!-- Left: Image Gallery -->
+                <div class="sticky top-32">
+                    <div class="product-image-container shadow-sm mb-4">
+                        <img src="{{ img }}" alt="{{ title }}" class="transition-opacity duration-500">
+                    </div>
+                </div>
+
+                <!-- Right: Product Info -->
+                <div class="flex flex-col">
+                    <div class="mb-6">
+                        <span class="text-primary font-bold tracking-wider text-sm uppercase mb-2 block">{{ category }}</span>
+                        <h1 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">{{ title }}</h1>
+                        <p class="text-xl text-gray-600 mb-6 font-light">{{ subtitle }}</p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        {{ badges_html }}
+                    </div>
+
+                    <p class="text-gray-700 leading-relaxed mb-8">
+                        {{ description }}
+                    </p>
+
+                    <!-- Acciones -->
+                    <div class="flex flex-wrap gap-4 mb-12">
+                        <a href="contacto.html" class="bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primaryDark transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.94 6.412A2 2 0 002 8.108V16a2 2 0 002 2h12a2 2 0 002-2V8.108a2 2 0 00-.94-1.696l-6-3.75a2 2 0 00-2.12 0l-6 3.75zm2.615 2.423a1 1 0 10-1.11 1.664l5 3.333a1 1 0 001.11 0l5-3.333a1 1 0 00-1.11-1.664L10 11.798 5.555 8.835z" clip-rule="evenodd" />
+                            </svg>
+                            Solicitar Presupuesto
+                        </a>
+                        {{ download_btn_html }}
+                    </div>
+
+                    <!-- Custom Tabs for Details -->
+                    <div class="border-t border-gray-200 pt-8">
+                        <div class="flex gap-8 mb-6 border-b border-gray-100">
+                            <button class="tab-btn active pb-4 text-gray-500 hover:text-gray-900" onclick="openTab('caracteristicas')">Características</button>
+                            <button class="tab-btn pb-4 text-gray-500 hover:text-gray-900" onclick="openTab('aplicaciones')">Aplicaciones</button>
+                            <button class="tab-btn pb-4 text-gray-500 hover:text-gray-900" onclick="openTab('normas')">Normas</button>
+                        </div>
+
+                        <!-- Tab contents -->
+                        <div id="caracteristicas" class="tab-content active">
+                            <ul class="space-y-3 text-gray-700">
+                                {{ caracteristicas_html }}
+                            </ul>
+                        </div>
+                        <div id="aplicaciones" class="tab-content">
+                            <p class="text-gray-700 leading-relaxed">{{ aplicaciones }}</p>
+                        </div>
+                        <div id="normas" class="tab-content">
+                            <ul class="space-y-3 text-gray-700">
+                                {{ normas_html }}
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-16 pb-8 border-t border-darker mt-auto">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <div>
+                    <img src="./img/IMSA_Logo_blanco_01.png" alt="IMSA Logo" class="h-10 mb-6 opacity-90">
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">Referentes en la fabricación de conductores eléctricos y productos de alta tecnología para la industria y el hogar.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Enlaces Rápidos</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-primary transition-colors">Inicio</a></li>
+                        <li><a href="productos.html" class="hover:text-primary transition-colors">Productos</a></li>
+                        <li><a href="nosotros.html" class="hover:text-primary transition-colors">Nosotros</a></li>
+                        <li><a href="contacto.html" class="hover:text-primary transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-6 text-white">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                            <span>Ruta 20 Km. 2.5, Córdoba, Argentina</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                            <a href="mailto:info@imsa.com.ar" class="hover:text-white transition-colors">info@imsa.com.ar</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">&copy; 2026 IMSA. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Tabs -->
+    <script>
+        function openTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
