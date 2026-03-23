@@ -106,7 +106,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Inicio</a>
                     <a href="nosotros.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Nosotros</a>
-                    <a href="productos.html" class="text-primary font-semibold">Productos</a>
+                    <a href="productos.html#productos" class="text-primary font-semibold">Productos</a>
                     <a href="servicios.html" class="text-gray-800 hover:text-primary transition-colors font-medium">Servicios</a>
                     <a href="imsa-plus.html" class="text-gray-800 hover:text-primary transition-colors font-medium">IMSA+</a>
                     <a href="contacto.html" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-primaryDark transition-all shadow-md hover:shadow-lg font-medium">Contacto</a>
@@ -308,8 +308,21 @@
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
 
+            let selectedProductFromStorage = null;
+            try {
+                const rawSelectedProduct = localStorage.getItem('imsaSelectedProduct');
+                if (rawSelectedProduct) {
+                    const parsedProduct = JSON.parse(rawSelectedProduct);
+                    if (parsedProduct && parsedProduct.id === productId) {
+                        selectedProductFromStorage = parsedProduct;
+                    }
+                }
+            } catch (error) {
+                selectedProductFromStorage = null;
+            }
+
             // 2. Buscar producto o mostrar por defecto
-            const product = productsData[productId] || productsData["cable-industrial-1"]; // Fallback al primero
+            const product = selectedProductFromStorage || productsData[productId] || productsData["cable-industrial-1"]; // Fallback al primero
 
             if (product) {
                 // Actualizar textos

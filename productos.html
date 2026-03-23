@@ -1214,8 +1214,19 @@
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="index.html"
                             class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Inicio</a>
-                        <a href="productos.html"
-                            class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300">Productos</a>
+                        <div class="relative group">
+                            <a href="productos.html#productos"
+                                class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300 inline-flex items-center gap-1">Productos
+                                <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                            </a>
+                            <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-lg shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                <div class="py-2">
+                                    <a href="productos.html?categoria=cables-electricos#productos" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition duration-200">Cables Eléctricos</a>
+                                    <a href="productos.html?categoria=alambres-esmaltados#productos" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition duration-200">Alambres Esmaltados</a>
+                                    <a href="productos.html?categoria=cables-especiales#productos" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary transition duration-200">Cables Especiales</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="relative group">
                             <a href="imsa-plus.html"
                                 class="text-sm font-medium text-gray-800 hover:text-primary transition duration-300 inline-flex items-center gap-1">IMSA +
@@ -1359,6 +1370,24 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            <section id="subcategory-page" class="section hidden">
+                <div class="container">
+                    <div class="mb-8">
+                        <a href="productos.html#productos" class="inline-flex items-center gap-2 text-primary font-semibold hover:text-primary-dark transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                            Volver a categorías
+                        </a>
+                    </div>
+
+                    <h2 id="subcategory-page-title" class="section-title text-center text-gray-900"></h2>
+                    <p id="subcategory-page-description" class="section-description text-center"></p>
+
+                    <div id="subcategory-products-grid" class="products-grid"></div>
                 </div>
             </section>
 
@@ -2657,6 +2686,9 @@
                     closeAllModals();
                 }
             });
+
+            initializeSubcategoryPageFromUrl();
+            initializeCategoryModalFromUrl();
         });
 
         // Modal functions
@@ -2743,39 +2775,33 @@
         }
 
         function showProductListing(subcategory) {
-            currentSubcategory = subcategory;
-            const categoryData = productData[currentProductCategory];
-            const subcategoryData = categoryData.subcategories[subcategory];
-            
-            if (subcategoryData) {
-                // Update modal content
-                document.getElementById('listing-title').textContent = subcategoryData.title;
-                document.getElementById('listing-description').textContent = subcategoryData.description;
-                
-                // Generate products grid
-                const productsGrid = document.getElementById('products-grid');
-                productsGrid.innerHTML = '';
-                
-                subcategoryData.products.forEach(product => {
-                    const productElement = createProductElement(product);
-                    productsGrid.appendChild(productElement);
-                });
-                
-                // Close subcategory modal and open listing modal
-                closeModal('subcategory-modal');
-                openModal('product-listing-modal');
-            }
+            const targetUrl = `productos.html?categoria=${encodeURIComponent(currentProductCategory)}&subcategoria=${encodeURIComponent(subcategory)}#subcategory-page`;
+            window.location.href = targetUrl;
         }
 
-        function createProductElement(product) {
+        function createProductElement(product, options = {}) {
+            const isFullPageView = Boolean(options.fullPageView);
             const productDiv = document.createElement('div');
             productDiv.className = 'product-item';
             productDiv.setAttribute('role', 'button');
             productDiv.setAttribute('tabindex', '0');
             productDiv.setAttribute('aria-label', product.name + ': ' + product.description);
-            productDiv.onclick = () => showProductDetail(product);
+            productDiv.onclick = () => {
+                if (isFullPageView) {
+                    openProductPage(product);
+                    return;
+                }
+                showProductDetail(product);
+            };
             productDiv.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showProductDetail(product); }
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    if (isFullPageView) {
+                        openProductPage(product);
+                        return;
+                    }
+                    showProductDetail(product);
+                }
             });
             
             productDiv.innerHTML = `
@@ -2787,6 +2813,90 @@
             `;
             
             return productDiv;
+        }
+
+        function openProductPage(product) {
+            const subcategoryData = productData[currentProductCategory]?.subcategories?.[currentSubcategory];
+            const normalizedSpecs = product.specs || {};
+            const badges = Object.entries(normalizedSpecs).slice(0, 3).map(([key, value]) => `${key}: ${value}`);
+            const caracteristicas = Object.entries(normalizedSpecs).map(([key, value]) => `${key}: ${value}`);
+            const normas = Object.entries(normalizedSpecs)
+                .filter(([key]) => key.toLowerCase().includes('norma'))
+                .map(([, value]) => value);
+
+            const selectedProduct = {
+                id: product.id,
+                title: product.name,
+                subtitle: subcategoryData ? subcategoryData.title : 'Producto IMSA',
+                category: subcategoryData ? subcategoryData.title : 'Productos',
+                description: product.description,
+                img: product.image,
+                pdf: product.pdfUrl || '',
+                badges: badges.length ? badges : ['Calidad IMSA', 'Aplicación Industrial', 'Ficha Técnica'],
+                caracteristicas: caracteristicas.length ? caracteristicas : ['Información técnica disponible bajo consulta'],
+                aplicaciones: product.description,
+                normas: normas.length ? normas : ['Consultar ficha técnica']
+            };
+
+            localStorage.setItem('imsaSelectedProduct', JSON.stringify(selectedProduct));
+            window.location.href = `producto.html?id=${encodeURIComponent(product.id)}`;
+        }
+
+        function initializeSubcategoryPageFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const categoryParam = params.get('categoria');
+            const subcategoryParam = params.get('subcategoria');
+
+            if (!categoryParam || !subcategoryParam) {
+                return;
+            }
+
+            const categoryData = productData[categoryParam];
+            const subcategoryData = categoryData?.subcategories?.[subcategoryParam];
+
+            if (!categoryData || !subcategoryData) {
+                return;
+            }
+
+            currentProductCategory = categoryParam;
+            currentSubcategory = subcategoryParam;
+
+            const mainEl = document.querySelector('main');
+            const subcategoryPageSection = document.getElementById('subcategory-page');
+            if (mainEl && subcategoryPageSection) {
+                mainEl.querySelectorAll(':scope > section').forEach((section) => {
+                    if (section.id !== 'subcategory-page') {
+                        section.classList.add('hidden');
+                    }
+                });
+                subcategoryPageSection.classList.remove('hidden');
+            }
+
+            document.getElementById('subcategory-page-title').textContent = subcategoryData.title;
+            document.getElementById('subcategory-page-description').textContent = subcategoryData.description;
+
+            const subcategoryProductsGrid = document.getElementById('subcategory-products-grid');
+            subcategoryProductsGrid.innerHTML = '';
+            subcategoryData.products.forEach((product) => {
+                const productElement = createProductElement(product, { fullPageView: true });
+                subcategoryProductsGrid.appendChild(productElement);
+            });
+        }
+
+        function initializeCategoryModalFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const categoryParam = params.get('categoria');
+            const subcategoryParam = params.get('subcategoria');
+
+            if (!categoryParam || subcategoryParam) {
+                return;
+            }
+
+            if (!productData[categoryParam]) {
+                return;
+            }
+
+            openSubcategoryModal(categoryParam);
         }
 
         function showProductDetail(product) {
