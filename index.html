@@ -215,6 +215,51 @@
             </div>
         </section>
 
+        <section id="explorador-productos" class="product-browser-section py-24 px-6 bg-gray-50">
+            <div class="container mx-auto">
+                <div class="product-browser-header">
+                    <span class="product-browser-kicker">Catalogo Inteligente</span>
+                    <h2 class="product-browser-title">Explorador de Productos IMSA</h2>
+                    <p class="product-browser-copy">Filtra por nombre de producto, categoria o caracteristicas tecnicas para encontrar rapidamente la mejor opcion.</p>
+                </div>
+
+                <div class="product-browser-filters">
+                    <label class="product-browser-control">
+                        <span>Buscar producto o palabra clave</span>
+                        <input id="product-search" type="text" placeholder="Ej: flexible, domiciliario, PVC">
+                    </label>
+
+                    <label class="product-browser-control">
+                        <span>Categoria</span>
+                        <select id="product-category-filter">
+                            <option value="">Todas las categorias</option>
+                        </select>
+                    </label>
+
+                    <label class="product-browser-control">
+                        <span>Caracteristica</span>
+                        <select id="product-feature-filter">
+                            <option value="">Todas las caracteristicas</option>
+                        </select>
+                    </label>
+
+                    <button id="product-browser-clear" class="product-browser-clear" type="button">Limpiar filtros</button>
+                </div>
+
+                <div class="product-browser-meta">
+                    <p id="product-results-count">Cargando productos...</p>
+                    <a href="productos.html#productos" class="product-browser-link">Ver catalogo completo</a>
+                </div>
+
+                <div id="product-browser-grid" class="product-browser-grid"></div>
+
+                <div id="product-browser-empty" class="product-browser-empty hidden">
+                    <h3>No encontramos coincidencias</h3>
+                    <p>Proba con otra palabra, categoria o caracteristica para seguir explorando.</p>
+                </div>
+            </div>
+        </section>
+
 
 
 
@@ -503,6 +548,193 @@
                 elem.classList.add('opacity-0', 'transition-opacity', 'duration-1000');
                 fadeObserver.observe(elem);
             });
+
+            const normalizeText = (value) => (value || '')
+                .toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+
+            const escapeHtml = (value) => (value || '')
+                .toString()
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+
+            const buildFeatureList = (product) => {
+                const features = [];
+
+                (product.badges || []).forEach((badge) => {
+                    if (badge && !features.includes(badge)) {
+                        features.push(badge);
+                    }
+                });
+
+                (product.caracteristicas || []).forEach((item) => {
+                    if (!item) {
+                        return;
+                    }
+
+                    const cleanItem = item.trim();
+                    if (cleanItem && !features.includes(cleanItem)) {
+                        features.push(cleanItem);
+                    }
+
+                    const keyPart = cleanItem.split(':')[0].trim();
+                    if (keyPart && keyPart.length > 2 && !features.includes(keyPart)) {
+                        features.push(keyPart);
+                    }
+                });
+
+                return features;
+            };
+
+            const initProductBrowser = async () => {
+                const searchInput = document.getElementById('product-search');
+                const categoryFilter = document.getElementById('product-category-filter');
+                const featureFilter = document.getElementById('product-feature-filter');
+                const clearButton = document.getElementById('product-browser-clear');
+                const grid = document.getElementById('product-browser-grid');
+                const emptyState = document.getElementById('product-browser-empty');
+                const resultsCount = document.getElementById('product-results-count');
+
+                if (!searchInput || !categoryFilter || !featureFilter || !grid || !emptyState || !resultsCount) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch('./productos.json', { cache: 'no-store' });
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el catalogo de productos.');
+                    }
+
+                    const rawProducts = await response.json();
+                    const products = Object.entries(rawProducts).map(([id, product]) => {
+                        const featureList = buildFeatureList(product);
+
+                        return {
+                            id,
+                            ...product,
+                            featureList,
+                            searchableText: normalizeText([
+                                product.title,
+                                product.subtitle,
+                                product.description,
+                                product.category,
+                                ...(product.badges || []),
+                                ...(product.caracteristicas || []),
+                            ].join(' ')),
+                            normalizedFeatures: featureList.map((item) => normalizeText(item)),
+                        };
+                    });
+
+                    const categories = [...new Set(products.map((item) => item.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+                    const allFeatures = [...new Set(products.flatMap((item) => item.featureList).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+
+                    categories.forEach((category) => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category;
+                        categoryFilter.appendChild(option);
+                    });
+
+                    allFeatures.forEach((feature) => {
+                        const option = document.createElement('option');
+                        option.value = feature;
+                        option.textContent = feature;
+                        featureFilter.appendChild(option);
+                    });
+
+                    const renderProducts = () => {
+                        const query = normalizeText(searchInput.value);
+                        const selectedCategory = categoryFilter.value;
+                        const selectedFeature = normalizeText(featureFilter.value);
+
+                        const filteredProducts = products.filter((product) => {
+                            const matchQuery = !query || product.searchableText.includes(query);
+                            const matchCategory = !selectedCategory || product.category === selectedCategory;
+                            const matchFeature = !selectedFeature || product.normalizedFeatures.some((feature) => feature.includes(selectedFeature));
+
+                            return matchQuery && matchCategory && matchFeature;
+                        });
+
+                        resultsCount.textContent = `${filteredProducts.length} producto(s) encontrado(s)`;
+                        grid.innerHTML = '';
+
+                        if (filteredProducts.length === 0) {
+                            emptyState.classList.remove('hidden');
+                            return;
+                        }
+
+                        emptyState.classList.add('hidden');
+
+                        filteredProducts.forEach((product) => {
+                            const badges = (product.badges || []).slice(0, 3).map((badge) => `<span>${escapeHtml(badge)}</span>`).join('');
+                            const characteristics = (product.caracteristicas || []).slice(0, 2).map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+
+                            const card = document.createElement('article');
+                            card.className = 'product-browser-card';
+                            card.innerHTML = `
+                                <a href="producto.html?id=${encodeURIComponent(product.id)}" data-product-id="${escapeHtml(product.id)}" class="product-browser-card-link">
+                                    <div class="product-browser-image-wrap">
+                                        <img src="${escapeHtml(product.img)}" alt="${escapeHtml(product.title)}" loading="lazy">
+                                    </div>
+                                    <div class="product-browser-card-body">
+                                        <p class="product-browser-category">${escapeHtml(product.category || 'Sin categoria')}</p>
+                                        <h3>${escapeHtml(product.title)}</h3>
+                                        <p class="product-browser-subtitle">${escapeHtml(product.subtitle || '')}</p>
+                                        <div class="product-browser-badges">${badges}</div>
+                                        <ul class="product-browser-characteristics">${characteristics}</ul>
+                                    </div>
+                                </a>
+                            `;
+
+                            grid.appendChild(card);
+                        });
+                    };
+
+                    searchInput.addEventListener('input', renderProducts);
+                    categoryFilter.addEventListener('change', renderProducts);
+                    featureFilter.addEventListener('change', renderProducts);
+                    clearButton.addEventListener('click', () => {
+                        searchInput.value = '';
+                        categoryFilter.value = '';
+                        featureFilter.value = '';
+                        renderProducts();
+                    });
+
+                    grid.addEventListener('click', (event) => {
+                        const productLink = event.target.closest('a[data-product-id]');
+
+                        if (!productLink) {
+                            return;
+                        }
+
+                        const productId = productLink.getAttribute('data-product-id');
+                        const selectedProduct = products.find((item) => item.id === productId);
+
+                        if (!selectedProduct) {
+                            return;
+                        }
+
+                        try {
+                            localStorage.setItem('imsaSelectedProduct', JSON.stringify(selectedProduct));
+                        } catch (storageError) {
+                            // No frenar la navegacion del usuario si localStorage falla.
+                        }
+                    });
+
+                    renderProducts();
+                } catch (error) {
+                    resultsCount.textContent = 'No pudimos cargar el browser de productos en este momento.';
+                }
+            };
+
+            initProductBrowser();
         });
     </script>
+    <script src="./scripts/global-search.js"></script>
 </body>

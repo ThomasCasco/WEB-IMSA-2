@@ -835,6 +835,74 @@
             gap: 1.5rem;
         }
 
+        .search-toolbar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            background-color: rgba(245, 245, 250, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.75rem;
+            padding: 0.85rem 3rem 0.85rem 1rem;
+            color: #111;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #e31837;
+            box-shadow: 0 0 0 3px rgba(227, 24, 55, 0.15);
+            background-color: #fff;
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 0.65rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            background-color: transparent;
+            color: rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .search-clear:hover {
+            color: #e31837;
+            background-color: rgba(227, 24, 55, 0.1);
+        }
+
+        .search-meta {
+            color: rgba(0, 0, 0, 0.65);
+            font-size: 0.875rem;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            background-color: rgba(240, 240, 245, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            color: rgba(0, 0, 0, 0.75);
+            margin-top: 1rem;
+        }
+
         .product-item {
             background-color: rgba(240, 240, 245, 0.95);
             border: 1px solid rgba(0, 0, 0, 0.12);
@@ -1387,7 +1455,25 @@
                     <h2 id="subcategory-page-title" class="section-title text-center text-gray-900"></h2>
                     <p id="subcategory-page-description" class="section-description text-center"></p>
 
+                    <div class="search-toolbar">
+                        <div class="search-input-wrapper">
+                            <input
+                                id="subcategory-search"
+                                type="search"
+                                class="search-input"
+                                placeholder="Buscar producto por nombre, descripción o especificación..."
+                                aria-label="Buscar productos"
+                                autocomplete="off"
+                            >
+                            <button id="subcategory-search-clear" class="search-clear" type="button" aria-label="Limpiar búsqueda">✕</button>
+                        </div>
+                        <p id="subcategory-search-meta" class="search-meta">Mostrando todos los productos.</p>
+                    </div>
+
                     <div id="subcategory-products-grid" class="products-grid"></div>
+                    <div id="subcategory-no-results" class="no-results">
+                        No encontramos productos que coincidan con tu búsqueda.
+                    </div>
                 </div>
             </section>
 
@@ -1792,6 +1878,7 @@
         let currentProductCategory = '';
         let currentSubcategory = '';
         let currentProduct = null;
+        let currentSubcategoryProducts = [];
 
         // Product data structure
         const productData = {
@@ -2687,6 +2774,7 @@
                 }
             });
 
+            initializeGlobalSearchPageFromUrl();
             initializeSubcategoryPageFromUrl();
             initializeCategoryModalFromUrl();
         });
@@ -2815,8 +2903,165 @@
             return productDiv;
         }
 
+        function normalizeForSearch(text) {
+            return (text || '')
+                .toString()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+
+        function renderSubcategoryProducts(products) {
+            const subcategoryProductsGrid = document.getElementById('subcategory-products-grid');
+            const noResults = document.getElementById('subcategory-no-results');
+
+            if (!subcategoryProductsGrid) {
+                return;
+            }
+
+            subcategoryProductsGrid.innerHTML = '';
+
+            if (!products.length) {
+                if (noResults) {
+                    noResults.style.display = 'block';
+                }
+                return;
+            }
+
+            if (noResults) {
+                noResults.style.display = 'none';
+            }
+
+            products.forEach((product) => {
+                const productElement = createProductElement(product, { fullPageView: true });
+                subcategoryProductsGrid.appendChild(productElement);
+            });
+        }
+
+        function applySubcategorySearch(query) {
+            const normalizedQuery = normalizeForSearch(query);
+            const meta = document.getElementById('subcategory-search-meta');
+            const clearButton = document.getElementById('subcategory-search-clear');
+
+            const filteredProducts = currentSubcategoryProducts.filter((product) => {
+                const specValues = Object.entries(product.specs || {})
+                    .map(([label, value]) => `${label} ${value}`)
+                    .join(' ');
+                const categoryInfo = `${product.__categoryTitle || ''} ${product.__subcategoryTitle || ''} ${product.__category || ''} ${product.__subcategory || ''}`;
+                const searchableText = normalizeForSearch(`${product.name} ${product.description} ${specValues} ${categoryInfo}`);
+                return searchableText.includes(normalizedQuery);
+            });
+
+            renderSubcategoryProducts(normalizedQuery ? filteredProducts : currentSubcategoryProducts);
+
+            if (meta) {
+                const total = currentSubcategoryProducts.length;
+                const shown = normalizedQuery ? filteredProducts.length : total;
+                if (!normalizedQuery) {
+                    meta.textContent = `Mostrando ${shown} producto${shown === 1 ? '' : 's'}.`;
+                } else {
+                    meta.textContent = `${shown} resultado${shown === 1 ? '' : 's'} para "${query.trim()}".`;
+                }
+            }
+
+            if (clearButton) {
+                clearButton.style.display = normalizedQuery ? 'flex' : 'none';
+            }
+        }
+
+        function initializeSubcategorySearch(initialQuery = '') {
+            const searchInput = document.getElementById('subcategory-search');
+            const clearButton = document.getElementById('subcategory-search-clear');
+
+            if (!searchInput) {
+                return;
+            }
+
+            searchInput.value = initialQuery;
+            applySubcategorySearch(initialQuery);
+
+            searchInput.addEventListener('input', (event) => {
+                applySubcategorySearch(event.target.value);
+            });
+
+            searchInput.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    searchInput.value = '';
+                    applySubcategorySearch('');
+                }
+            });
+
+            if (clearButton) {
+                clearButton.addEventListener('click', () => {
+                    searchInput.value = '';
+                    applySubcategorySearch('');
+                    searchInput.focus();
+                });
+            }
+        }
+
+        function collectAllProducts() {
+            const allProducts = [];
+
+            Object.entries(productData).forEach(([categoryKey, categoryData]) => {
+                Object.entries(categoryData.subcategories || {}).forEach(([subcategoryKey, subcategoryData]) => {
+                    (subcategoryData.products || []).forEach((product) => {
+                        allProducts.push({
+                            ...product,
+                            __category: categoryKey,
+                            __categoryTitle: categoryData.title,
+                            __subcategory: subcategoryKey,
+                            __subcategoryTitle: subcategoryData.title
+                        });
+                    });
+                });
+            });
+
+            return allProducts;
+        }
+
+        function showSearchResultsPage(query) {
+            const mainEl = document.querySelector('main');
+            const subcategoryPageSection = document.getElementById('subcategory-page');
+
+            if (mainEl && subcategoryPageSection) {
+                mainEl.querySelectorAll(':scope > section').forEach((section) => {
+                    if (section.id !== 'subcategory-page') {
+                        section.classList.add('hidden');
+                    }
+                });
+                subcategoryPageSection.classList.remove('hidden');
+            }
+
+            document.getElementById('subcategory-page-title').textContent = 'Resultados de productos';
+            document.getElementById('subcategory-page-description').textContent = 'Buscador global de productos IMSA.';
+
+            currentProductCategory = '';
+            currentSubcategory = '';
+            currentSubcategoryProducts = collectAllProducts();
+
+            renderSubcategoryProducts(currentSubcategoryProducts);
+            initializeSubcategorySearch(query);
+        }
+
+        function initializeGlobalSearchPageFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const categoryParam = params.get('categoria');
+            const subcategoryParam = params.get('subcategoria');
+            const searchParam = (params.get('buscar') || '').trim();
+
+            if (categoryParam || subcategoryParam || !searchParam) {
+                return;
+            }
+
+            showSearchResultsPage(searchParam);
+        }
+
         function openProductPage(product) {
-            const subcategoryData = productData[currentProductCategory]?.subcategories?.[currentSubcategory];
+            const productCategoryKey = product.__category || currentProductCategory;
+            const productSubcategoryKey = product.__subcategory || currentSubcategory;
+            const subcategoryData = productData[productCategoryKey]?.subcategories?.[productSubcategoryKey];
             const normalizedSpecs = product.specs || {};
             const badges = Object.entries(normalizedSpecs).slice(0, 3).map(([key, value]) => `${key}: ${value}`);
             const caracteristicas = Object.entries(normalizedSpecs).map(([key, value]) => `${key}: ${value}`);
@@ -2846,6 +3091,7 @@
             const params = new URLSearchParams(window.location.search);
             const categoryParam = params.get('categoria');
             const subcategoryParam = params.get('subcategoria');
+            const searchParam = params.get('buscar') || '';
 
             if (!categoryParam || !subcategoryParam) {
                 return;
@@ -2875,12 +3121,9 @@
             document.getElementById('subcategory-page-title').textContent = subcategoryData.title;
             document.getElementById('subcategory-page-description').textContent = subcategoryData.description;
 
-            const subcategoryProductsGrid = document.getElementById('subcategory-products-grid');
-            subcategoryProductsGrid.innerHTML = '';
-            subcategoryData.products.forEach((product) => {
-                const productElement = createProductElement(product, { fullPageView: true });
-                subcategoryProductsGrid.appendChild(productElement);
-            });
+            currentSubcategoryProducts = subcategoryData.products || [];
+            renderSubcategoryProducts(currentSubcategoryProducts);
+            initializeSubcategorySearch(searchParam);
         }
 
         function initializeCategoryModalFromUrl() {
@@ -3045,5 +3288,6 @@
             }
         });
     </script>
+    <script src="./scripts/global-search.js"></script>
 </body>
 </html>
